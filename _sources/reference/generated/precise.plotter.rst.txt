@@ -1,0 +1,6 @@
+﻿precise.plotter
+===============
+
+.. currentmodule:: precise
+
+.. autofunction:: plotter

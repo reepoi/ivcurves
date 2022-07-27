@@ -1,0 +1,6 @@
+﻿compare\_curves.write\_test\_set\_score\_per\_curve\_csvs
+=========================================================
+
+.. currentmodule:: compare_curves
+
+.. autofunction:: write_test_set_score_per_curve_csvs

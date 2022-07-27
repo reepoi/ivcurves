@@ -1,0 +1,6 @@
+﻿precise.plot\_iv\_curves
+========================
+
+.. currentmodule:: precise
+
+.. autofunction:: plot_iv_curves

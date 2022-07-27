@@ -1,0 +1,6 @@
+﻿precise.get\_precise\_i
+=======================
+
+.. currentmodule:: precise
+
+.. autofunction:: get_precise_i

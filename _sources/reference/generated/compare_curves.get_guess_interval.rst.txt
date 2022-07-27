@@ -1,0 +1,6 @@
+﻿compare\_curves.get\_guess\_interval
+====================================
+
+.. currentmodule:: compare_curves
+
+.. autofunction:: get_guess_interval

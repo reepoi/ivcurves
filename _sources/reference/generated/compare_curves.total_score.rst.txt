@@ -1,0 +1,6 @@
+﻿compare\_curves.total\_score
+============================
+
+.. currentmodule:: compare_curves
+
+.. autofunction:: total_score

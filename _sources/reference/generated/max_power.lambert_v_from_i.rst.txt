@@ -1,0 +1,6 @@
+﻿max\_power.lambert\_v\_from\_i
+==============================
+
+.. currentmodule:: max_power
+
+.. autofunction:: lambert_v_from_i

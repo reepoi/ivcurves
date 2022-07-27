@@ -1,0 +1,6 @@
+﻿compare\_curves.get\_test\_sets\_to\_score
+==========================================
+
+.. currentmodule:: compare_curves
+
+.. autofunction:: get_test_sets_to_score

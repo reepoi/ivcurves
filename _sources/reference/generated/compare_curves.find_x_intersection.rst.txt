@@ -1,0 +1,6 @@
+﻿compare\_curves.find\_x\_intersection
+=====================================
+
+.. currentmodule:: compare_curves
+
+.. autofunction:: find_x_intersection

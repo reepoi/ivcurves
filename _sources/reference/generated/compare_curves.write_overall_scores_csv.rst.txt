@@ -1,0 +1,6 @@
+﻿compare\_curves.write\_overall\_scores\_csv
+===========================================
+
+.. currentmodule:: compare_curves
+
+.. autofunction:: write_overall_scores_csv

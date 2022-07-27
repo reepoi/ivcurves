@@ -1,0 +1,6 @@
+﻿compare\_curves.get\_curve
+==========================
+
+.. currentmodule:: compare_curves
+
+.. autofunction:: get_curve

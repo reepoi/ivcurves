@@ -1,0 +1,6 @@
+﻿max\_power.golden\_search
+=========================
+
+.. currentmodule:: max_power
+
+.. autofunction:: golden_search

@@ -1,0 +1,6 @@
+﻿max\_power.get\_right\_int\_pt
+==============================
+
+.. currentmodule:: max_power
+
+.. autofunction:: get_right_int_pt

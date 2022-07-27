@@ -1,0 +1,6 @@
+﻿submissions.reepoi.solution.solution
+====================================
+
+.. currentmodule:: submissions.reepoi.solution
+
+.. autofunction:: solution
