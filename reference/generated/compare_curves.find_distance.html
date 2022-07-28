@@ -166,11 +166,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="compare_curves.try_findroot.html">
-     compare_curves.try_findroot
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="compare_curves.get_guess_interval.html">
      compare_curves.get_guess_interval
     </a>
@@ -334,9 +329,18 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="compare_curves.find_distance">
 <span class="sig-prename descclassname"><span class="pre">compare_curves.</span></span><span class="sig-name descname"><span class="pre">find_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compare_curves.find_distance" title="Permalink to this definition">#</a></dt>
-<dd><p>Calculate the distance between two given points, using a particular
-definition of distance.</p>
-<p>Here, distance is a kind of a scaled Euclidean distance.</p>
+<dd><p>Calculates the distance between two points <span class="math notranslate nohighlight">\((x, y)\)</span> and
+<span class="math notranslate nohighlight">\((x_p, y_p)\)</span> using a scaled Euclidean distance.</p>
+<p>The scaled Euclidean distance is defined as</p>
+<div class="math notranslate nohighlight">
+\[\sqrt{\left(\frac{x_p - x}{x}\right)^2 + \left(\frac{y_p - y}{y}\right)^2}\]</div>
+<p>If <span class="math notranslate nohighlight">\(x\)</span> is zero, it is</p>
+<div class="math notranslate nohighlight">
+\[\sqrt{\left(\frac{y_p - y}{y}\right)^2}\]</div>
+<p>If <span class="math notranslate nohighlight">\(y\)</span> is zero, it is</p>
+<div class="math notranslate nohighlight">
+\[\sqrt{\left(\frac{x_p - x}{x}\right)^2}\]</div>
+<p>It is assumed that <span class="math notranslate nohighlight">\((x, y) \neq 0\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -347,17 +351,7 @@ definition of distance.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p>Distance between the two points, where here the distance between
-<span class="math notranslate nohighlight">\((x, y)\)</span> and <span class="math notranslate nohighlight">\((xp, yp)\)</span> is</p>
-<p>..math:</p>
-<p>sqrt{ frac{xp - x}{x}^2 + frac{yp - y}{y}^2 }</p>
-<p>if <cite>x</cite> and <cite>y</cite> are not zero, and</p>
-<p>..math:</p>
-<p>sqrt{ frac{yp - y}{y}^2 }</p>
-<p>if <cite>x</cite> is zero, and</p>
-<p>sqrt{ frac{xp - x}{x}^2 }</p>
-<p>if <cite>y</cite> is zero.</p>
-</p>
+<dd class="field-even"><p>The calculated distance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>mpmath float</p>

@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="compare_curves.find_distance" href="compare_curves.find_distance.html" />
-    <link rel="prev" title="compare_curves.try_findroot" href="compare_curves.try_findroot.html" />
+    <link rel="prev" title="compare_curves.find_x_intersection" href="compare_curves.find_x_intersection.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
   </head>
@@ -162,11 +162,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="compare_curves.find_x_intersection.html">
      compare_curves.find_x_intersection
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="compare_curves.try_findroot.html">
-     compare_curves.try_findroot
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -334,18 +329,18 @@
 <dt class="sig sig-object py" id="compare_curves.get_guess_interval">
 <span class="sig-prename descclassname"><span class="pre">compare_curves.</span></span><span class="sig-name descname"><span class="pre">get_guess_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">known_xs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">known_ys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt_on_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_segments</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compare_curves.get_guess_interval" title="Permalink to this definition">#</a></dt>
 <dd><p>Finds the interval in which the known curve intersects the given line.</p>
-<p>Auxiliary function for find_x_intersection.</p>
+<p>This is an auxiliary function for <a class="reference internal" href="compare_curves.find_x_intersection.html#compare_curves.find_x_intersection" title="compare_curves.find_x_intersection"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_x_intersection()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>known_xs</strong> (<em>list of floats</em>) – A list of x-coordinates.</p></li>
-<li><p><strong>known_ys</strong> (<em>list of floats</em>) – A list of y-coordinates associated to <cite>known_xs</cite> that lie on the known
+<li><p><strong>known_ys</strong> (<em>list of floats</em>) – A list of y-coordinates associated to <code class="docutils literal notranslate"><span class="pre">known_xs</span></code> that lie on the known
 curve.</p></li>
 <li><p><strong>pt_on_line</strong> (<em>tuple of floats</em>) – Point on fitted curve.</p></li>
 <li><p><strong>num_segments</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Number of segments to use when approximating known curve.
-We will find <cite>num_segments</cite> points on the given curve, then consider
+We will find <code class="docutils literal notranslate"><span class="pre">num_segments</span></code> points on the given curve, then consider
 consecutive pairs of points (which will define a line segment between
-them). If the line that passes through the origin and <cite>pt_on_line</cite>
+them). If the line that passes through the origin and <code class="docutils literal notranslate"><span class="pre">pt_on_line</span></code>
 crosses this particular segment, we return the x-coordinates of the
 endpoints of this segment.</p></li>
 </ul>
@@ -353,7 +348,7 @@ endpoints of this segment.</p></li>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The left and right x-coordinates of the interval that contains the
 intersection of the known curve with the line that passes through the
-origin and <cite>pt_on_line</cite>.</p>
+origin and <code class="docutils literal notranslate"><span class="pre">pt_on_line</span></code>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple of mpmath floats</p>
@@ -371,11 +366,11 @@ origin and <cite>pt_on_line</cite>.</p>
               <footer class="bd-footer-article">
                   <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="compare_curves.try_findroot.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="compare_curves.find_x_intersection.html" title="previous page">
       <i class="fas fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">compare_curves.try_findroot</p>
+          <p class="prev-next-title">compare_curves.find_x_intersection</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="compare_curves.find_distance.html" title="next page">

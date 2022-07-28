@@ -166,11 +166,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="compare_curves.try_findroot.html">
-     compare_curves.try_findroot
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="compare_curves.get_guess_interval.html">
      compare_curves.get_guess_interval
     </a>
@@ -356,25 +351,28 @@ The thermal voltage of the cell (in volts) may be calculated as
 <p>Each returned voltage, current pair is a solution to the single diode
 equation. Because we are working with inexact numbers, these pairs are
 rarely exact solutions to this equation. Here, an error of at most
-<cite>atol</cite> means that for a given <span class="math notranslate nohighlight">\((V, I)\)</span> pair,</p>
+<code class="docutils literal notranslate"><span class="pre">atol</span></code> means that for a given <span class="math notranslate nohighlight">\((V, I)\)</span> pair,</p>
 <div class="math notranslate nohighlight">
-\[atol &gt; I_L - I_0 \left[ \exp \left( \frac{V+I R_s}{n N_s V_{th}}
-\right) - 1 \right] - \frac{V + I R_s}{R_{sh}} - I.\]</div>
+\[\left|
+   I_L - I_0 \left[
+      \exp \left( \frac{V+I R_s}{n N_s V_{th}} \right) - 1
+   \right] - \frac{V + I R_s}{R_{sh}} - I
+\right| &lt; \text{atol}\]</div>
 </p></li>
 <li><p><strong>num_pts</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Number of points calculated on IV curve.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>(vv, precise_i)</strong> – <cite>vv</cite> and <cite>precise_i</cite> are numpy arrays of mpmath floats of
-length <cite>num_pts</cite>.</p>
+<dd class="field-even"><p><strong>(vv, precise_i)</strong> – <code class="docutils literal notranslate"><span class="pre">vv</span></code> and <code class="docutils literal notranslate"><span class="pre">precise_i</span></code> are numpy arrays of mpmath floats of
+length <code class="docutils literal notranslate"><span class="pre">num_pts</span></code>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple of numpy arrays</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>Uses pvlib.pvsystem.singlediode to generate solution pairs, then uses
-max_power’s <cite>lambert_i_from_v</cite> to sharpen the precision of the solutions
+<p>Uses <code class="docutils literal notranslate"><span class="pre">pvlib.pvsystem.singlediode</span></code> to generate solution pairs, then uses
+<a class="reference internal" href="max_power.lambert_i_from_v.html#max_power.lambert_i_from_v" title="max_power.lambert_i_from_v"><code class="xref py py-func docutils literal notranslate"><span class="pre">max_power.lambert_i_from_v()</span></code></a> to sharpen the precision of the solutions
 if necessary.</p>
 </dd></dl>
 

@@ -166,11 +166,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="compare_curves.try_findroot.html">
-     compare_curves.try_findroot
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="compare_curves.get_guess_interval.html">
      compare_curves.get_guess_interval
     </a>
@@ -333,7 +328,7 @@
 <h1>compare_curves.iv_plotter<a class="headerlink" href="#compare-curves-iv-plotter" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="compare_curves.iv_plotter">
-<span class="sig-prename descclassname"><span class="pre">compare_curves.</span></span><span class="sig-name descname"><span class="pre">iv_plotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iv_known</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iv_fitted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_pts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compare_curves.iv_plotter" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">compare_curves.</span></span><span class="sig-name descname"><span class="pre">iv_plotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iv_known</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iv_fitted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_pts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compare_curves.iv_plotter" title="Permalink to this definition">#</a></dt>
 <dd><p>Plots the fitted curve (green) and the known curve (cyan).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -387,14 +382,14 @@ The thermal voltage of the cell (in volts) may be calculated as
 <dl class="simple">
 <dt>num_pts<span class="classifier">int</span></dt><dd><p>Number of points to use when plotting curves.</p>
 </dd>
-<dt>atol<span class="classifier">float</span></dt><dd><p>The error of each of the solution pairs found is at most <cite>atol</cite>. (See
-get_precise_i.)
+<dt>atol<span class="classifier">float</span></dt><dd><p>The error of each of the solution pairs found is at most <code class="docutils literal notranslate"><span class="pre">atol</span></code>. (See
+<a class="reference internal" href="precise.get_precise_i.html#precise.get_precise_i" title="precise.get_precise_i"><code class="xref py py-func docutils literal notranslate"><span class="pre">precise.get_precise_i()</span></code></a>.)
 Each solution pair is a point on the curve.</p>
 </dd>
 <dt>pts<span class="classifier">list, default []</span></dt><dd><p>A list of points on the fitted curve that will be plotted, along with
 their associated points on the known curve.</p>
 </dd>
-<dt>plot_lines<span class="classifier">bool, defult True</span></dt><dd><p>If true, the lines connecting the points on the fitted curve and the
+<dt>plot_lines<span class="classifier">bool, default True</span></dt><dd><p>If true, the lines connecting the points on the fitted curve and the
 associated points on the known curve will be plotted.</p>
 </dd>
 </dl>

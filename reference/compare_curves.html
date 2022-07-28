@@ -34,6 +34,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="compare_curves.find_x_intersection" href="generated/compare_curves.find_x_intersection.html" />
@@ -162,11 +163,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="generated/compare_curves.find_x_intersection.html">
      compare_curves.find_x_intersection
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="generated/compare_curves.try_findroot.html">
-     compare_curves.try_findroot
     </a>
    </li>
    <li class="toctree-l2">
@@ -333,33 +329,30 @@
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compare_curves.find_x_intersection.html#compare_curves.find_x_intersection" title="compare_curves.find_x_intersection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_x_intersection</span></code></a>(single_diode, known_xs, ...)</p></td>
-<td><p>Finds x-coordinate of the intersection point of the known IV curve and the line through origin and given point (<cite>xp</cite>, <cite>yp</cite>).</p></td>
+<td><p>Finds x-coordinate of the intersection between the known IV curve and the line segment from the origin to the given point <span class="math notranslate nohighlight">\((x_p, y_p)\)</span>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compare_curves.try_findroot.html#compare_curves.try_findroot" title="compare_curves.try_findroot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">try_findroot</span></code></a>(func, guess, atol[, max_steps])</p></td>
-<td><p>Tries running findroot with different parameters to maximize chance of success.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compare_curves.get_guess_interval.html#compare_curves.get_guess_interval" title="compare_curves.get_guess_interval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_guess_interval</span></code></a>(known_xs, known_ys, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compare_curves.get_guess_interval.html#compare_curves.get_guess_interval" title="compare_curves.get_guess_interval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_guess_interval</span></code></a>(known_xs, known_ys, ...)</p></td>
 <td><p>Finds the interval in which the known curve intersects the given line.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compare_curves.find_distance.html#compare_curves.find_distance" title="compare_curves.find_distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_distance</span></code></a>(x, y, xp, yp)</p></td>
-<td><p>Calculate the distance between two given points, using a particular definition of distance.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compare_curves.find_distance.html#compare_curves.find_distance" title="compare_curves.find_distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_distance</span></code></a>(x, y, xp, yp)</p></td>
+<td><p>Calculates the distance between two points <span class="math notranslate nohighlight">\((x, y)\)</span> and <span class="math notranslate nohighlight">\((x_p, y_p)\)</span> using a scaled Euclidean distance.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compare_curves.total_score.html#compare_curves.total_score" title="compare_curves.total_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">total_score</span></code></a>(known_curve_params, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compare_curves.total_score.html#compare_curves.total_score" title="compare_curves.total_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">total_score</span></code></a>(known_curve_params, ...)</p></td>
 <td><p>Calculates the total score for a given fitted curve.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compare_curves.get_curve.html#compare_curves.get_curve" title="compare_curves.get_curve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_curve</span></code></a>(curve_parameters, vth, num_pts, atol)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compare_curves.get_curve.html#compare_curves.get_curve" title="compare_curves.get_curve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_curve</span></code></a>(curve_parameters, vth, num_pts, atol)</p></td>
 <td><p>Gets precise voltage and current pairs for the given curve.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compare_curves.iv_plotter.html#compare_curves.iv_plotter" title="compare_curves.iv_plotter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iv_plotter</span></code></a>(iv_known, iv_fitted, vth, ...[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compare_curves.iv_plotter.html#compare_curves.iv_plotter" title="compare_curves.iv_plotter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iv_plotter</span></code></a>(iv_known, iv_fitted, vth, ...[, ...])</p></td>
 <td><p>Plots the fitted curve (green) and the known curve (cyan).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compare_curves.get_test_sets_to_score.html#compare_curves.get_test_sets_to_score" title="compare_curves.get_test_sets_to_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_test_sets_to_score</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compare_curves.get_test_sets_to_score.html#compare_curves.get_test_sets_to_score" title="compare_curves.get_test_sets_to_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_test_sets_to_score</span></code></a>(...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compare_curves.write_test_set_score_per_curve_csvs.html#compare_curves.write_test_set_score_per_curve_csvs" title="compare_curves.write_test_set_score_per_curve_csvs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_test_set_score_per_curve_csvs</span></code></a>(scores, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compare_curves.write_test_set_score_per_curve_csvs.html#compare_curves.write_test_set_score_per_curve_csvs" title="compare_curves.write_test_set_score_per_curve_csvs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_test_set_score_per_curve_csvs</span></code></a>(scores, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compare_curves.write_overall_scores_csv.html#compare_curves.write_overall_scores_csv" title="compare_curves.write_overall_scores_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_overall_scores_csv</span></code></a>(scores, csv_output_path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compare_curves.write_overall_scores_csv.html#compare_curves.write_overall_scores_csv" title="compare_curves.write_overall_scores_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_overall_scores_csv</span></code></a>(scores, csv_output_path)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>

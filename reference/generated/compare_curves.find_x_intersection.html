@@ -34,9 +34,10 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="compare_curves.try_findroot" href="compare_curves.try_findroot.html" />
+    <link rel="next" title="compare_curves.get_guess_interval" href="compare_curves.get_guess_interval.html" />
     <link rel="prev" title="Compare Curves" href="../compare_curves.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="en">
@@ -162,11 +163,6 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      compare_curves.find_x_intersection
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="compare_curves.try_findroot.html">
-     compare_curves.try_findroot
     </a>
    </li>
    <li class="toctree-l2">
@@ -332,24 +328,27 @@
 <h1>compare_curves.find_x_intersection<a class="headerlink" href="#compare-curves-find-x-intersection" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="compare_curves.find_x_intersection">
-<span class="sig-prename descclassname"><span class="pre">compare_curves.</span></span><span class="sig-name descname"><span class="pre">find_x_intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">single_diode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">known_xs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">known_ys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compare_curves.find_x_intersection" title="Permalink to this definition">#</a></dt>
-<dd><p>Finds x-coordinate of the intersection point of the known IV curve and the
-line through origin and given point (<cite>xp</cite>, <cite>yp</cite>).</p>
-<p>Auxiliary function for total_score.</p>
+<span class="sig-prename descclassname"><span class="pre">compare_curves.</span></span><span class="sig-name descname"><span class="pre">find_x_intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">single_diode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">known_xs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">known_ys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxsteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#compare_curves.find_x_intersection" title="Permalink to this definition">#</a></dt>
+<dd><p>Finds x-coordinate of the intersection between the known IV curve and the
+line segment from the origin to the given point <span class="math notranslate nohighlight">\((x_p, y_p)\)</span>.</p>
+<p>This is an auxiliary function for <a class="reference internal" href="compare_curves.total_score.html#compare_curves.total_score" title="compare_curves.total_score"><code class="xref py py-func docutils literal notranslate"><span class="pre">total_score()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>single_diode</strong> (<em>function</em>) – The single diode equation with two unknowns (the first being voltage,
 the second being current).</p></li>
 <li><p><strong>known_xs</strong> (<em>list of floats</em>) – A list of x-coordinates.</p></li>
-<li><p><strong>known_ys</strong> (<em>list of floats</em>) – A list of y-coordinates associated to <cite>known_xs</cite> that lie on the known
+<li><p><strong>known_ys</strong> (<em>list of floats</em>) – A list of y-coordinates associated to <code class="docutils literal notranslate"><span class="pre">known_xs</span></code> that lie on the known
 curve.</p></li>
 <li><p><strong>xp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – x-coordinate of point on fitted curve (voltage).</p></li>
 <li><p><strong>yp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – y-coordinate of point on fitted curve (current).</p></li>
 <li><p><strong>num_segments</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Number of segments to use when approximating known curve. (See
-get_guess_interval.)</p></li>
-<li><p><strong>atol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – When finding roots within function, found root will be at most <cite>atol</cite>
-from true root. (See try_findroot.)</p></li>
+<a class="reference internal" href="compare_curves.get_guess_interval.html#compare_curves.get_guess_interval" title="compare_curves.get_guess_interval"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_guess_interval()</span></code></a>.)</p></li>
+<li><p><strong>atol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – Absolute tolerance of how close the found x-coordiante must be to the
+true x-coordinate of the intersection point.</p></li>
+<li><p><strong>maxsteps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Maximum number of iterations for <code class="docutils literal notranslate"><span class="pre">mp.findroot</span></code> to find the
+x-coordinate of the intersection point. A <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> is thrown
+if <code class="docutils literal notranslate"><span class="pre">atol</span></code> is not met after <code class="docutils literal notranslate"><span class="pre">maxsteps</span></code> iterations.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -379,10 +378,10 @@ origin and the given point.</p>
           <p class="prev-next-title">Compare Curves</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="compare_curves.try_findroot.html" title="next page">
+  <a class='right-next' id="next-link" href="compare_curves.get_guess_interval.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">compare_curves.try_findroot</p>
+      <p class="prev-next-title">compare_curves.get_guess_interval</p>
   </div>
   <i class="fas fa-angle-right"></i>
   </a>
