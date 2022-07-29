@@ -1,0 +1,6 @@
+﻿precise.max\_power\_pt\_finder
+==============================
+
+.. currentmodule:: precise
+
+.. autofunction:: max_power_pt_finder

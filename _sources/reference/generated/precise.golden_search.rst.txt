@@ -1,0 +1,6 @@
+﻿precise.golden\_search
+======================
+
+.. currentmodule:: precise
+
+.. autofunction:: golden_search

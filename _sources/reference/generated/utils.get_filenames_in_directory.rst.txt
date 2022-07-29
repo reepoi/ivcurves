@@ -1,0 +1,6 @@
+﻿utils.get\_filenames\_in\_directory
+===================================
+
+.. currentmodule:: utils
+
+.. autofunction:: get_filenames_in_directory

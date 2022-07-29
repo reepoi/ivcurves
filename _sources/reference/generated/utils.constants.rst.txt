@@ -1,0 +1,6 @@
+﻿utils.constants
+===============
+
+.. currentmodule:: utils
+
+.. autofunction:: constants

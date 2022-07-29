@@ -1,0 +1,6 @@
+﻿utils.set\_globals
+==================
+
+.. currentmodule:: utils
+
+.. autofunction:: set_globals

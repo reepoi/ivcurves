@@ -1,0 +1,6 @@
+﻿precise.diff\_lhs\_rhs
+======================
+
+.. currentmodule:: precise
+
+.. autofunction:: diff_lhs_rhs

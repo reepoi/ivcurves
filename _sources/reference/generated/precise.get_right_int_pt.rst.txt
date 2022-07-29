@@ -1,0 +1,6 @@
+﻿precise.get\_right\_int\_pt
+===========================
+
+.. currentmodule:: precise
+
+.. autofunction:: get_right_int_pt
