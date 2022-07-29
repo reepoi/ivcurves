@@ -34,6 +34,8 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Submissions" href="submissions/index.html" />
@@ -152,9 +154,19 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-a-submission">
+   Making a Submission
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -174,6 +186,65 @@
                 
   <section id="how-to-participate">
 <span id="participating"></span><h1>How to Participate<a class="headerlink" href="#how-to-participate" title="Permalink to this heading">#</a></h1>
+<section id="making-a-submission">
+<h2>Making a Submission<a class="headerlink" href="#making-a-submission" title="Permalink to this heading">#</a></h2>
+<p>Here are the steps to make your submission as a competitor.
+You may as many submissions as you like, and each will be a separate entry on the leaderboard.</p>
+<ol class="arabic">
+<li><p>Create a fork of the ivcurves repository.</p></li>
+<li><p>Create a new folder <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;</span></code>.
+This folder will store all of the files you create.</p></li>
+<li><p>Write or copy your submission’s code inside this folder.</p></li>
+<li><p>Create a file <code class="docutils literal notranslate"><span class="pre">pr_config.env</span></code> with these three lines:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">RUN_SCORER</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">REQUIREMENTS</span><span class="o">=</span><span class="s1">&#39;&lt;path_to_requirements.txt&gt;&#39;</span>
+<span class="nv">SUBMISSION_MAIN</span><span class="o">=</span><span class="s1">&#39;&lt;path_to_submission_entrypoint&gt;&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Push these changes to your fork.
+GitHub will automatically run your code and provide a CSV file containing your scores.
+You will see either a green check mark or red x next to your commit.
+Click on it to see your results.</p></li>
+<li><p>When you are ready, and see a green check mark next to your commit, create a pull request into <code class="docutils literal notranslate"><span class="pre">cwhanse/ivcurves/main</span></code>.
+GitHub will again automatically run and score your code.
+An ivcurves maintainer will be notified of your pull request.</p></li>
+<li><p>After an ivcurves maintainer reviews and approves your pull request, it will be merged.
+GitHub will record your score in its database, and post it to the leaderboard.</p></li>
+</ol>
+<div class="mermaid">
+            sequenceDiagram
+    participant Competitor
+    participant GitHub Actions
+    participant ivcurves Maintainer
+
+    activate Competitor
+    Note over Competitor: Forks ivcurves repository.
+    Note over Competitor: Creates folder submissions/&lt;your_GitHub_username&gt; to put their files into.
+    Note over Competitor: Creates pr_config.env with these three lines:&lt;br&gt; RUN_SCORER=true&lt;br&gt;REQUIREMENTS='&lt;path_to_requirements.txt&gt;'&lt;br&gt; SUBMISSION_MAIN='&lt;path_to_submission_entrypoint&gt;'
+    Note over Competitor: Writes code for submission.
+
+    Competitor-&gt;&gt;GitHub Actions: Pushes code to fork on GitHub
+    deactivate Competitor
+    activate GitHub Actions
+    Note over GitHub Actions: Reads pr_config.env and scores submission.
+    GitHub Actions-&gt;&gt;Competitor: Reports results with CSV of scores
+    deactivate GitHub Actions
+
+    Competitor-&gt;&gt;GitHub Actions: Creates pull request
+    activate GitHub Actions
+    GitHub Actions-&gt;&gt;ivcurves Maintainer: Notifies of pull requeset
+    activate ivcurves Maintainer
+    Note over GitHub Actions: Reads pr_config.env and score submission code.
+    GitHub Actions-&gt;&gt;Competitor: Reports results with CSV of scores
+    Note over ivcurves Maintainer: Reviews pull request.
+    ivcurves Maintainer-&gt;&gt;GitHub Actions: Merges competitor's pull request
+    deactivate ivcurves Maintainer
+    GitHub Actions-&gt;&gt;Competitor: Notifies of pull request merge
+    Note over GitHub Actions: Records submission's score in database.
+    Note over GitHub Actions: Updates Sphinx webiste with new data.
+    deactivate GitHub Actions
+        </div></section>
 </section>
 
 
