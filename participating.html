@@ -165,6 +165,11 @@
    Making a Submission
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-workflow-diagram">
+   Submission Workflow Diagram
+  </a>
+ </li>
 </ul>
 
 </nav>
@@ -195,14 +200,18 @@ You may as many submissions as you like, and each will be a separate entry on th
 <li><p>Create a new folder <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;</span></code>.
 This folder will store all of the files you create.</p></li>
 <li><p>Write or copy your submission’s code inside this folder.</p></li>
-<li><p>Create a file <code class="docutils literal notranslate"><span class="pre">pr_config.env</span></code> with these three lines:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">RUN_SCORER</span><span class="o">=</span><span class="nb">true</span>
-<span class="nv">REQUIREMENTS</span><span class="o">=</span><span class="s1">&#39;&lt;path_to_requirements.txt&gt;&#39;</span>
-<span class="nv">SUBMISSION_MAIN</span><span class="o">=</span><span class="s1">&#39;&lt;path_to_submission_entrypoint&gt;&#39;</span>
+<li><p>Create a file <code class="docutils literal notranslate"><span class="pre">pr_config.json</span></code> with three entries:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;RUN_SCORER&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;REQUIREMENTS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path_to_requirements.txt&gt;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;SUBMISSION_MAIN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path_to_submission_entrypoint.py&gt;&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+<p>The paths of <code class="docutils literal notranslate"><span class="pre">REQUIREMENTS</span></code> and <code class="docutils literal notranslate"><span class="pre">SUBMISSION_MAIN</span></code> must be relative to your <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;</span></code> folder.
+For example, for a Pip requirements file located at <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;/requirements.txt</span></code>, the path of <code class="docutils literal notranslate"><span class="pre">REQUIREMENTS</span></code> should be <code class="docutils literal notranslate"><span class="pre">./requirements.txt</span></code>.</p>
 </li>
-<li><p>Push these changes to your fork.
+<li><p>Push your changes to your fork.
 GitHub will automatically run your code and provide a CSV file containing your scores.
 You will see either a green check mark or red x next to your commit.
 Click on it to see your results.</p></li>
@@ -212,6 +221,9 @@ An ivcurves maintainer will be notified of your pull request.</p></li>
 <li><p>After an ivcurves maintainer reviews and approves your pull request, it will be merged.
 GitHub will record your score in its database, and post it to the leaderboard.</p></li>
 </ol>
+</section>
+<section id="submission-workflow-diagram">
+<h2>Submission Workflow Diagram<a class="headerlink" href="#submission-workflow-diagram" title="Permalink to this heading">#</a></h2>
 <div class="mermaid">
             sequenceDiagram
     participant Competitor
@@ -221,21 +233,21 @@ GitHub will record your score in its database, and post it to the leaderboard.</
     activate Competitor
     Note over Competitor: Forks ivcurves repository.
     Note over Competitor: Creates folder submissions/&lt;your_GitHub_username&gt; to put their files into.
-    Note over Competitor: Creates pr_config.env with these three lines:&lt;br&gt; RUN_SCORER=true&lt;br&gt;REQUIREMENTS='&lt;path_to_requirements.txt&gt;'&lt;br&gt; SUBMISSION_MAIN='&lt;path_to_submission_entrypoint&gt;'
+    Note over Competitor: Creates pr_config.json.
     Note over Competitor: Writes code for submission.
 
     Competitor-&gt;&gt;GitHub Actions: Pushes code to fork on GitHub
     deactivate Competitor
     activate GitHub Actions
-    Note over GitHub Actions: Reads pr_config.env and scores submission.
+    Note over GitHub Actions: Reads pr_config.json and scores submission.
     GitHub Actions-&gt;&gt;Competitor: Reports results with CSV of scores
     deactivate GitHub Actions
 
     Competitor-&gt;&gt;GitHub Actions: Creates pull request
     activate GitHub Actions
-    GitHub Actions-&gt;&gt;ivcurves Maintainer: Notifies of pull requeset
+    GitHub Actions-&gt;&gt;ivcurves Maintainer: Notifies of pull request
     activate ivcurves Maintainer
-    Note over GitHub Actions: Reads pr_config.env and score submission code.
+    Note over GitHub Actions: Reads pr_config.json and scores submission code.
     GitHub Actions-&gt;&gt;Competitor: Reports results with CSV of scores
     Note over ivcurves Maintainer: Reviews pull request.
     ivcurves Maintainer-&gt;&gt;GitHub Actions: Merges competitor's pull request
