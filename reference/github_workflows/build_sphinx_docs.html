@@ -329,7 +329,7 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="score_submission.html">
-     Score Submission Workflow
+     Score Submission
     </a>
    </li>
    <li class="toctree-l2">
@@ -472,8 +472,8 @@
 <h1>Build Sphinx Docs<a class="headerlink" href="#build-sphinx-docs" title="Permalink to this heading">#</a></h1>
 <div class="mermaid">
             flowchart
-CalledByRecordScoresWorkflow(The record-scores workflow calls this workflow) --&gt; StartWorkflow(GitHub begins running this workflow)
-CalledByMaintainer(An ivcurves maintainer requests to build the Sphinx website) --&gt; StartWorkflow
+CalledByAnotherWorkflow(Another workflow calls this workflow) --&gt; StartWorkflow(GitHub begins running this workflow)
+CalledByMaintainer(An ivcurves maintainer manually runs this workflow) --&gt; StartWorkflow
 
 StartWorkflow --&gt; CheckoutMain(Checkout ivcurves' main branch into the folder 'main')
 CheckoutMain --&gt; InstallPython310(Install Python 3.10)

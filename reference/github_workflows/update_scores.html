@@ -329,7 +329,7 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="score_submission.html">
-     Score Submission Workflow
+     Score Submission
     </a>
    </li>
    <li class="toctree-l2">
@@ -472,7 +472,7 @@
 <h1>Update Scores<a class="headerlink" href="#update-scores" title="Permalink to this heading">#</a></h1>
 <div class="mermaid">
             flowchart
-MaintainerCallsWorkflow(A Maintainer runs this workflow using workflow_dispatch) --&gt; StartWorkflow(GitHub begins running this workflow)
+MaintainerCallsWorkflow(An ivcurves maintainer requests to update all submission scores) --&gt; StartWorkflow(GitHub begins running this workflow)
 
 StartWorkflow --&gt; StartGetPRDataJob(GitHub begins the get-pr-data job)
 StartGetPRDataJob --&gt; CheckoutGetPRData(Checkout ivcurves' main branch)

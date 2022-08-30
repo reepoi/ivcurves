@@ -329,7 +329,7 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../score_submission.html">
-     Score Submission Workflow
+     Score Submission
     </a>
    </li>
    <li class="toctree-l2">
@@ -482,23 +482,18 @@
 <h1>Record Scores<a class="headerlink" href="#record-scores" title="Permalink to this heading">#</a></h1>
 <section id="record-scores-py">
 <h2>record_scores.py<a class="headerlink" href="#record-scores-py" title="Permalink to this heading">#</a></h2>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">usage: record_scores.py [-h] [--broken-if-invalid | --no-broken-if-invalid]</span>
-<span class="go">                        [--pr-author PR_AUTHOR] [--pr-number PR_NUMBER]</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">usage: record_scores.py [-h] [--pr-author PR_AUTHOR] [--pr-number PR_NUMBER]</span>
 <span class="go">                        [--pr-closed-at PR_CLOSED_DATETIME]</span>
 <span class="go">                        [--overall-scores-path OVERALL_SCORES_PATH]</span>
 <span class="go">                        [--database-path DATABASE_PATH]</span>
+<span class="go">                        [--broken-if-invalid | --no-broken-if-invalid]</span>
+<span class="go">                        [--save-database | --no-save-database]</span>
 </pre></div>
 </div>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-record_scores.py-h">
 <span id="cmdoption-record-scores-py-h"></span><span id="cmdoption-record_scores.py-help"></span><span id="cmdoption-record-scores-py-help"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-record_scores.py-h" title="Permalink to this definition">#</a></dt>
 <dd><p>show this help message and exit</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-record_scores.py-broken-if-invalid">
-<span id="cmdoption-record-scores-py-broken-if-invalid"></span><span id="cmdoption-record_scores.py-no-broken-if-invalid"></span><span id="cmdoption-record-scores-py-no-broken-if-invalid"></span><span class="sig-name descname"><span class="pre">--broken-if-invalid</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-broken-if-invalid</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-record_scores.py-broken-if-invalid" title="Permalink to this definition">#</a></dt>
-<dd><p>Mark submission broken instead of raising an exception</p>
 </dd></dl>
 
 <dl class="std option">
@@ -529,6 +524,18 @@
 <dt class="sig sig-object std" id="cmdoption-record_scores.py-database-path">
 <span id="cmdoption-record-scores-py-database-path"></span><span class="sig-name descname"><span class="pre">--database-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;database_path&gt;</span></span><a class="headerlink" href="#cmdoption-record_scores.py-database-path" title="Permalink to this definition">#</a></dt>
 <dd><p>Path to the JSON scores database.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-record_scores.py-broken-if-invalid">
+<span id="cmdoption-record-scores-py-broken-if-invalid"></span><span id="cmdoption-record_scores.py-no-broken-if-invalid"></span><span id="cmdoption-record-scores-py-no-broken-if-invalid"></span><span class="sig-name descname"><span class="pre">--broken-if-invalid</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-broken-if-invalid</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-record_scores.py-broken-if-invalid" title="Permalink to this definition">#</a></dt>
+<dd><p>Mark submission broken instead of raising an exception. (default: False)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-record_scores.py-save-database">
+<span id="cmdoption-record-scores-py-save-database"></span><span id="cmdoption-record_scores.py-no-save-database"></span><span id="cmdoption-record-scores-py-no-save-database"></span><span class="sig-name descname"><span class="pre">--save-database</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-database</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-record_scores.py-save-database" title="Permalink to this definition">#</a></dt>
+<dd><p>Save updates to the database. (default: True)</p>
 </dd></dl>
 
 </section>
