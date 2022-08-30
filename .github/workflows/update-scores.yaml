@@ -100,7 +100,7 @@ jobs:
           path: submissions
       - name: Run all submissions
         env:
-          SUBMISSION_TIMEOUT: 0.2 # minutes
+          SUBMISSION_TIMEOUT: 2 # minutes
         run: |
           #               PR_DATA
           # pr_number | pr_username | pr_datetime
