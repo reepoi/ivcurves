@@ -55,5 +55,14 @@
       "case3": "436.6555645081116309"
     },
     "broken": "Missing scores from these test sets: case1, case2, case3"
+  },
+  "87": {
+    "username": "uofutahcapstoneahjregistryteam",
+    "submission_datetime": "2022-08-30T13:40:05Z",
+    "test_sets": {
+      "case1": "1417683649516.6594532091077234",
+      "case2": "620633208098.6385822304233556",
+      "case3": "620633208098.6385822304233556"
+    }
   }
 }
