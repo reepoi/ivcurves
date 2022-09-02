@@ -2,8 +2,6 @@ name: Score submission
 
 on:
   push:
-    paths:
-      - 'submissions/${{ github.actor }}' # only score if files in the contributor's submissions folder were modified
   workflow_call:
     outputs:
       run-scorer:
