@@ -52,11 +52,6 @@ jobs:
           echo '::set-output name=requirements-path::${{ env.REQUIREMENTS_PATH }}'
           echo '::set-output name=submission-main-filename::${{ env.SUBMISSION_MAIN_FILENAME }}'
           echo '::set-output name=submission-main-path::${{ env.SUBMISSION_MAIN_PATH }}'
-      - name: Upload pr_config.json to artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: pr_config.json
-          path: submissions/${{ env.CONTRIBUTOR }}/pr_config.json
 
   run-scorer:
     name: Run scorer
