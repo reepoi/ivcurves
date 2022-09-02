@@ -1,5 +1,5 @@
-GitHub Workflow Utility Scripts
-===============================
+Utility Python Scripts
+======================
 
 .. toctree::
    :maxdepth: 2
