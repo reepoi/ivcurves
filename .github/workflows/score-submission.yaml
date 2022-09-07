@@ -5,7 +5,7 @@ on:
   workflow_call:
     outputs:
       run-scorer:
-        description: 'The pr_config.json says to run the scorer'
+        description: 'The pr_config.json says to run the scorer.'
         value: ${{ jobs.read-pr-config.outputs.run-scorer }}
 
 jobs:
