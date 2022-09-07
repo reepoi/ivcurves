@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 # from ivcurves repo
 import utils
-from utils import mp
+from utils import mp # same instance of mpmath's mp imported in ivcurves/utils
 import precise
 
 

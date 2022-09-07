@@ -1,7 +1,7 @@
 import datetime
 import json
 import utils_docs as utils
-from mpmath import mp
+from utils_docs import mp # same instance of mpmath's mp imported in ivcurves/utils
 
 
 def load_scores_database():
