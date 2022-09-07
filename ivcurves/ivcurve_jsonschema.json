@@ -149,7 +149,7 @@
       "pattern": "(^[-+]?[0-9]*[.]?[0-9]+$)|(^[-+]?[0-9]*[.]?[0-9]+([eE][-+]?[0-9]+)?$)"
     },
     "NumberOption": {
-      "description": "A Number that can be null",
+      "description": "A Number that can be null.",
       "oneOf": [
         {
           "$ref": "#/$defs/Number"
