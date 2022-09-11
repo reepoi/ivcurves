@@ -349,7 +349,7 @@
    </li>
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="utils/index.html">
-     GitHub Workflow Utility Scripts
+     Utility Python Scripts
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
     <label for="toctree-checkbox-5">
@@ -472,21 +472,21 @@
 <h1>Update Scores<a class="headerlink" href="#update-scores" title="Permalink to this heading">#</a></h1>
 <div class="mermaid">
             flowchart
-MaintainerCallsWorkflow(An ivcurves maintainer requests to update all submission scores) --&gt; StartWorkflow(GitHub begins running this workflow)
+MaintainerCallsWorkflow(An Maintainer requests to update all submission scores) --&gt; StartWorkflow(Start this workflow)
 
-StartWorkflow --&gt; StartGetPRDataJob(GitHub begins the get-pr-data job)
+StartWorkflow --&gt; StartGetPRDataJob(Start the get-pr-data job)
 StartGetPRDataJob --&gt; CheckoutGetPRData(Checkout ivcurves' main branch)
 CheckoutGetPRData --&gt; InstallPython310GetPRData(Install Python 3.10)
 InstallPython310GetPRData --&gt; ReadScoresDatabasePullRequestData(Read scores_database.json and create a 2-D array with these columns: pr_number, username, and submission_datetime)
 
-ReadScoresDatabasePullRequestData --&gt; StartCollectPRSubmissionsJob(For every pull request number in scores_database.json, GitHub begins the collect-pr-submissions job)
+ReadScoresDatabasePullRequestData --&gt; StartCollectPRSubmissionsJob(For every pull request number in scores_database.json, start the collect-pr-submissions job)
 StartCollectPRSubmissionsJob --&gt; CheckoutCollectPRSubmissions(Checkout ivcurves' main branch with its entire commit history)
 CheckoutCollectPRSubmissions --&gt; FindPRMergeCommit(Use GitHub CLI to find the merge commit of the pull request)
 FindPRMergeCommit --&gt; CheckoutPRMergeCommit(Checkout the merge commit of the pull request)
 CheckoutPRMergeCommit --&gt; RenameSubmissionFolder(Rename the pull request author's submission to pr_number--username)
 RenameSubmissionFolder --&gt; UploadRenamedSubmissionFolder(Upload the renamed submission folder to GitHub artifacts)
 
-UploadRenamedSubmissionFolder --&gt;|Every collect-pr-submissions job has completed| StartScoreAllSubmissionsJob(GitHub beings the score-all-submissions job)
+UploadRenamedSubmissionFolder --&gt;|Every collect-pr-submissions job has completed| StartScoreAllSubmissionsJob(Start the score-all-submissions job)
 StartScoreAllSubmissionsJob --&gt; CheckoutScoreAllSubmissions(Checkout ivcurves' main branch)
 CheckoutScoreAllSubmissions --&gt; InstallPython310ScoreAllSubmissions(Install Python 3.10)
 InstallPython310ScoreAllSubmissions --&gt; InstallIVCurvesDependencies(Install ivcurves Python dependencies)
@@ -500,7 +500,7 @@ BashRunSubmission --&gt; BashScoreSubmission(Bash scores the submission)
 BashScoreSubmission --&gt; BashValidateRecordScores(Bash validates and records the scores, marking the submission broken if validation fails)
 BashValidateRecordScores --&gt; BashRemoveVirtualEnv(Bash removes the virtual environment for the submission)
 BashRemoveVirtualEnv --&gt; CommitModifiedDatabase(Commit and push the udpated database to GitHub)
-CommitModifiedDatabase --&gt; StartBuildSphinxDocksWorkflow(GitHub begins the build-sphinx-docs workflow)
+CommitModifiedDatabase --&gt; StartBuildSphinxDocksWorkflow(Call the build-sphinx-docs workflow)
         </div></section>
 
 

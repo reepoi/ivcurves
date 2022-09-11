@@ -277,7 +277,7 @@ GitHub will post your GitHub username and score to the leaderboard.</p></li>
         </div></section>
 <section id="submission-requirements">
 <h2>Submission Requirements<a class="headerlink" href="#submission-requirements" title="Permalink to this heading">#</a></h2>
-<p>In the <code class="docutils literal notranslate"><span class="pre">test_sets</span></code> folder, there are multiple JSON files whose contents has the following structure:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">test_sets</span></code> folder contains sets of IV curves in JSON files following the <a class="reference internal" href="jsonschema.html#jsonschema"><span class="std std-ref">IV Curve JSON Schema</span></a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;Manufacturer&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
   <span class="s2">&quot;Sandia ID&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
@@ -298,11 +298,11 @@ GitHub will post your GitHub username and score to the leaderboard.</p></li>
       <span class="s2">&quot;v_mp&quot;</span><span class="p">:</span> <span class="s2">&quot;33.9368943991155301&quot;</span><span class="p">,</span>
       <span class="s2">&quot;i_mp&quot;</span><span class="p">:</span> <span class="s2">&quot;0.8461238606639279&quot;</span><span class="p">,</span>
       <span class="s2">&quot;p_mp&quot;</span><span class="p">:</span> <span class="s2">&quot;28.7148161079236649&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;cells_in_series&quot;</span><span class="p">:</span> <span class="s2">&quot;72&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;cells_in_series&quot;</span><span class="p">:</span> <span class="mi">72</span><span class="p">,</span>
       <span class="s2">&quot;Temperature&quot;</span><span class="p">:</span> <span class="s2">&quot;298.15&quot;</span><span class="p">,</span>
       <span class="s2">&quot;Irradiance&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-      <span class="s2">&quot;Sweep direction&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-      <span class="s2">&quot;Datetime&quot;</span><span class="p">:</span> <span class="n">null</span>
+      <span class="s2">&quot;Sweep direction&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Datetime&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
     <span class="p">},</span>
     <span class="o">...</span>
   <span class="p">]</span>
@@ -311,6 +311,17 @@ GitHub will post your GitHub username and score to the leaderboard.</p></li>
 </div>
 <p>Under the <code class="docutils literal notranslate"><span class="pre">&quot;IV</span> <span class="pre">Curves&quot;</span></code> key is a list of IV curve data sets each with an <code class="docutils literal notranslate"><span class="pre">&quot;Index&quot;</span></code> value.
 The <code class="docutils literal notranslate"><span class="pre">&quot;Index&quot;</span></code> value is the test case number of the test set.</p>
+<p>The decimal numbers in each test case are calculated at a higher precision than what a 64-bit floating point number can store.
+To be sure that precision is not lost unintentionally when reading the JSON, the numbers are stored in strings.
+The competitor must decide how to parse these numbers in their submission.
+Here are a couple options:</p>
+<ol class="arabic simple">
+<li><p>Parse the strings containing a number into a Python <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>.
+Any precision that cannot be stored in a 64-bit floating point number will be lost.</p></li>
+<li><p>Use an arbitrary precision math library to parse the strings containing a number.
+The library <a class="reference external" href="https://mpmath.org/">mpmath</a> was used to calculate the IV curve data in these test sets.</p>
+</li>
+</ol>
 <p>For each JSON file <code class="docutils literal notranslate"><span class="pre">&lt;test_set_name&gt;.json</span></code> in <code class="docutils literal notranslate"><span class="pre">test_sets</span></code>, your code must write a CSV file <code class="docutils literal notranslate"><span class="pre">&lt;test_set_name&gt;.csv</span></code> in the folder containing your submission main.
 Each CSV file must have these columns:</p>
 <table class="table" id="id1">
@@ -336,7 +347,8 @@ Each CSV file must have these columns:</p>
 </tr>
 </tbody>
 </table>
-<p>Each row the CSV file will contain your code’s fitted parameters for each test case in its corresponding test set.</p>
+<p>Each row of the CSV file will contain your code’s fitted parameters for each test case in its corresponding test set.
+The script that scores your submission will read your CSV file and use an arbitrary precision math library to parse your fitted parameters.</p>
 <p>Here is some Python code that may be useful for getting a set all of the JSON filenames in <code class="docutils literal notranslate"><span class="pre">test_sets</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>

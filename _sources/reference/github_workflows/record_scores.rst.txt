@@ -4,16 +4,13 @@ Record Scores
 .. mermaid::
 
    flowchart
-   PullRequestMerged(The Competitor's pull request is merged into ivcurves' main branch) --> StartWorkflow(GitHub begins running this workflow)
+   PullRequestMerged(The Competitor's pull request is merged into ivcurves' main branch) --> StartWorkflow(Start this workflow)
 
-   StartWorkflow --> StartReadPRConfigJob(Github begins the read-pr-config job)
-   StartReadPRConfigJob --> CheckoutReadPRConfig(Checkout ivcurves' main branch)
-   CheckoutReadPRConfig --> InstallPython310(Install Python 3.10)
-   InstallPython310 --> DownloadPRConfigFromPR(Download pr_config.json from the the score-submission workflow)
-   DownloadPRConfigFromPR --> ReadPRConfig(Read and validate the Competitor's pr_config.json)
+   StartWorkflow --> CallScoreSubmission(Call the score-submission workflow)
+   CallScoreSubmission --> ReadPRConfig(Read score-submission's run-scorer output variable)
 
-   ReadPRConfig -->|RUN_SCORER is true| StartRecordScoresJob(GitHub begins the record-scores job)
-   ReadPRConfig -->|RUN_SCORER is false| TerminateWorkflow(End the workflow)
+   ReadPRConfig -->|run-scorer is true| StartRecordScoresJob(Start the record-scores job)
+   ReadPRConfig -->|run-scorer is false| TerminateWorkflow(End the workflow)
 
    StartRecordScoresJob --> CheckoutRecordScores(Checkout ivcurves' main branch)
    CheckoutRecordScores --> InstallPython310RecordScores(Install Python 3.10)
@@ -22,6 +19,6 @@ Record Scores
 
    ValidateAndRecordScores --> CommitModifiedDatabase(Commit and push updated database to GitHub)
 
-   CommitModifiedDatabase -->|RUN_SCORER is true| StartBuildSphinxDocsWorkflow(GitHub begins the build-sphinx-docs workflow)
-   CommitModifiedDatabase -->|RUN_SCORER is false| TerminateWorkflowRecordScores(End the workflow)
+   CommitModifiedDatabase -->|run-scorer is true| StartBuildSphinxDocsWorkflow(Call the build-sphinx-docs workflow)
+   CommitModifiedDatabase -->|run-scorer is false| TerminateWorkflowRecordScores(End the workflow)
 

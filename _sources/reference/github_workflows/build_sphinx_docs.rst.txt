@@ -4,8 +4,8 @@ Build Sphinx Docs
 .. mermaid::
 
    flowchart
-   CalledByAnotherWorkflow(Another workflow calls this workflow) --> StartWorkflow(GitHub begins running this workflow)
-   CalledByMaintainer(An ivcurves maintainer manually runs this workflow) --> StartWorkflow
+   CalledByAnotherWorkflow(Another workflow calls this workflow) --> StartWorkflow(Start this workflow)
+   CalledByMaintainer(A Maintainer manually runs this workflow) --> StartWorkflow
 
    StartWorkflow --> CheckoutMain(Checkout ivcurves' main branch into the folder 'main')
    CheckoutMain --> InstallPython310(Install Python 3.10)

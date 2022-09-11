@@ -349,7 +349,7 @@
    </li>
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="utils/index.html">
-     GitHub Workflow Utility Scripts
+     Utility Python Scripts
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
     <label for="toctree-checkbox-5">
@@ -473,22 +473,20 @@
 <div class="mermaid">
             flowchart
 Push(A commit is pushed)
-PullRequest(A pull request is opened, synchronized, or closed)
+WorkflowCall(Another workflow calls this workflow)
 
-Push --&gt; StartWorkflow(GitHub begins running this workflow)
-PullRequest --&gt; StartWorkflow
+Push --&gt; StartWorkflow(Start this workflow)
+WorkflowCall --&gt; StartWorkflow
 
-StartWorkflow --&gt; StartReadPRConfigJob(GitHub begins the read-pr-config job)
+StartWorkflow --&gt; StartReadPRConfigJob(Start the read-pr-config job)
 
 StartReadPRConfigJob --&gt; CheckoutReadPRConfig(Checkout Competitor's pull request branch)
 CheckoutReadPRConfig --&gt; InstallPython310ReadPRConfig(Install Python 3.10)
 
 InstallPython310ReadPRConfig --&gt; ReadPRConfig(Read and validate the Competitor's pr_config.json)
 
-ReadPRConfig --&gt; UploadPRConfig(Upload pr_config.json to the workflow's artifacts)
-
-UploadPRConfig --&gt;|RUN_SCORER is true| StartScoreSubmissionJob(GitHub begins the score-submission job)
-UploadPRConfig --&gt;|RUN_SCORER is false| TerminateWorkflow(End the workflow)
+ReadPRConfig --&gt;|RUN_SCORER is true| StartScoreSubmissionJob(Start the score-submission job)
+ReadPRConfig --&gt;|RUN_SCORER is false| TerminateWorkflow(End the workflow)
 
 StartScoreSubmissionJob --&gt; CheckoutScoreSubmission(Checkout Competitor's pull request branch)
 CheckoutScoreSubmission --&gt; InstallPython310ScoreSubmission(Install Python 3.10)
@@ -498,7 +496,8 @@ InstallIVCurvesDependencies --&gt; InstallCompetitorDependencies(Install Competi
 InstallCompetitorDependencies --&gt; RunCompetitorSubmission(Run the Competitor's submission)
 RunCompetitorSubmission --&gt; ScoreCompetitorOutput(Run ivcurve's compare_curves.py to score competitor's CSV output)
 
-ScoreCompetitorOutput --&gt; UploadOverallScores(Upload compare_curves.py's output to workflow's artifacts)
+ScoreCompetitorOutput --&gt; ValidateScores(Validate the Competitor's scores)
+ValidateScores --&gt; UploadOverallScores(Upload the scores to the workflow's artifacts)
         </div></section>
 
 

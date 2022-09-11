@@ -349,7 +349,7 @@
    </li>
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="utils/index.html">
-     GitHub Workflow Utility Scripts
+     Utility Python Scripts
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
     <label for="toctree-checkbox-5">
@@ -472,16 +472,13 @@
 <h1>Record Scores<a class="headerlink" href="#record-scores" title="Permalink to this heading">#</a></h1>
 <div class="mermaid">
             flowchart
-PullRequestMerged(The Competitor's pull request is merged into ivcurves' main branch) --&gt; StartWorkflow(GitHub begins running this workflow)
+PullRequestMerged(The Competitor's pull request is merged into ivcurves' main branch) --&gt; StartWorkflow(Start this workflow)
 
-StartWorkflow --&gt; StartReadPRConfigJob(Github begins the read-pr-config job)
-StartReadPRConfigJob --&gt; CheckoutReadPRConfig(Checkout ivcurves' main branch)
-CheckoutReadPRConfig --&gt; InstallPython310(Install Python 3.10)
-InstallPython310 --&gt; DownloadPRConfigFromPR(Download pr_config.json from the the score-submission workflow)
-DownloadPRConfigFromPR --&gt; ReadPRConfig(Read and validate the Competitor's pr_config.json)
+StartWorkflow --&gt; CallScoreSubmission(Call the score-submission workflow)
+CallScoreSubmission --&gt; ReadPRConfig(Read score-submission's run-scorer output variable)
 
-ReadPRConfig --&gt;|RUN_SCORER is true| StartRecordScoresJob(GitHub begins the record-scores job)
-ReadPRConfig --&gt;|RUN_SCORER is false| TerminateWorkflow(End the workflow)
+ReadPRConfig --&gt;|run-scorer is true| StartRecordScoresJob(Start the record-scores job)
+ReadPRConfig --&gt;|run-scorer is false| TerminateWorkflow(End the workflow)
 
 StartRecordScoresJob --&gt; CheckoutRecordScores(Checkout ivcurves' main branch)
 CheckoutRecordScores --&gt; InstallPython310RecordScores(Install Python 3.10)
@@ -490,8 +487,8 @@ DownloadOverallScores --&gt; ValidateAndRecordScores(Validate the overall scores
 
 ValidateAndRecordScores --&gt; CommitModifiedDatabase(Commit and push updated database to GitHub)
 
-CommitModifiedDatabase --&gt;|RUN_SCORER is true| StartBuildSphinxDocsWorkflow(GitHub begins the build-sphinx-docs workflow)
-CommitModifiedDatabase --&gt;|RUN_SCORER is false| TerminateWorkflowRecordScores(End the workflow)
+CommitModifiedDatabase --&gt;|run-scorer is true| StartBuildSphinxDocsWorkflow(Call the build-sphinx-docs workflow)
+CommitModifiedDatabase --&gt;|run-scorer is false| TerminateWorkflowRecordScores(End the workflow)
         </div></section>
 
 
