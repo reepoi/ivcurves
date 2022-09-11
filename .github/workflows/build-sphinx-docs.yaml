@@ -31,7 +31,7 @@ jobs:
         run: python3 ivcurves/precise.py --save-images docs/sphinx/source/_images/test_cases
       - name: Copy IV Curve JSON Schema to _static files
         working-directory: main
-        run: cp ivcurves/ivcurve_jsonschema.json main/docs/sphinx/_static/.
+        run: cp ivcurves/ivcurve_jsonschema.json docs/sphinx/_static/.
       - name: Rebuild Sphinx docs html
         working-directory: main/docs/sphinx
         run: make html
