@@ -10,3 +10,5 @@ __pycache__
 
 docs/sphinx/build
 docs/sphinx/**/generated
+**/node_modules
+!docs/sphinx/source/_static/package.json
