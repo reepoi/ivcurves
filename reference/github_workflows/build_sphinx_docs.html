@@ -480,7 +480,8 @@ CheckoutMain --&gt; InstallPython310(Install Python 3.10)
 InstallPython310 --&gt; InstallIVCurvesDependencies(Install ivcurves Python dependencies)
 InstallIVCurvesDependencies --&gt; GenerateTestCasePlotImages(Generate test case plot images)
 
-GenerateTestCasePlotImages --&gt; BuildSphinx(Build the Sphinx HTML)
+GenerateTestCasePlotImages --&gt; CopyIntoStaticFiles(Copy IV Curve JSON Schema into the _static folder)
+CopyIntoStaticFiles --&gt; BuildSphinx(Build the Sphinx HTML)
 
 BuildSphinx --&gt; CheckoutGHPages(Checkout ivcurves' gh-pages branch into the folder 'gh-pages')
 

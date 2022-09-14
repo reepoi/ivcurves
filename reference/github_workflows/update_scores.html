@@ -479,27 +479,34 @@ StartGetPRDataJob --&gt; CheckoutGetPRData(Checkout ivcurves' main branch)
 CheckoutGetPRData --&gt; InstallPython310GetPRData(Install Python 3.10)
 InstallPython310GetPRData --&gt; ReadScoresDatabasePullRequestData(Read scores_database.json and create a 2-D array with these columns: pr_number, username, and submission_datetime)
 
-ReadScoresDatabasePullRequestData --&gt; StartCollectPRSubmissionsJob(For every pull request number in scores_database.json, start the collect-pr-submissions job)
-StartCollectPRSubmissionsJob --&gt; CheckoutCollectPRSubmissions(Checkout ivcurves' main branch with its entire commit history)
-CheckoutCollectPRSubmissions --&gt; FindPRMergeCommit(Use GitHub CLI to find the merge commit of the pull request)
+subgraph collect-pr-submissions
+CheckoutCollectPRSubmissions(Checkout ivcurves' main branch with its entire commit history) --&gt; FindPRMergeCommit(Use GitHub CLI to find the merge commit of the pull request)
 FindPRMergeCommit --&gt; CheckoutPRMergeCommit(Checkout the merge commit of the pull request)
 CheckoutPRMergeCommit --&gt; RenameSubmissionFolder(Rename the pull request author's submission to pr_number--username)
 RenameSubmissionFolder --&gt; UploadRenamedSubmissionFolder(Upload the renamed submission folder to GitHub artifacts)
+end
 
-UploadRenamedSubmissionFolder --&gt;|Every collect-pr-submissions job has completed| StartScoreAllSubmissionsJob(Start the score-all-submissions job)
+ReadScoresDatabasePullRequestData --&gt;|For every pull requeset number in scores_database.json| collect-pr-submissions
+collect-pr-submissions --&gt; StartScoreAllSubmissionsJob(Start the score-all-submissions job)
+
 StartScoreAllSubmissionsJob --&gt; CheckoutScoreAllSubmissions(Checkout ivcurves' main branch)
 CheckoutScoreAllSubmissions --&gt; InstallPython310ScoreAllSubmissions(Install Python 3.10)
 InstallPython310ScoreAllSubmissions --&gt; InstallIVCurvesDependencies(Install ivcurves Python dependencies)
 InstallIVCurvesDependencies --&gt; DeleteAllSubmissions(Delete all submissions to make room for the ones uploaded by the collect-pr-submissions job)
 DeleteAllSubmissions --&gt; DownloadGitHubArtifactsSubmissions(Download all submissions uploaded by the collect-pr-submissions job)
 DownloadGitHubArtifactsSubmissions --&gt; BeginBashScriptToRunAllSubmissions(Begin a Bash script to run and score all submissions)
-BeginBashScriptToRunAllSubmissions --&gt;|For every submission| BashCreateVirtualEnv(Bash creates a virtual environment for the submission)
-BashCreateVirtualEnv --&gt; BashInstallSubmissionDependencies(Bash installs the submission's Python dependencies)
+
+subgraph Bash
+BashCreateVirtualEnv(Bash creates a Python virtual environment for the submission) --&gt; BashInstallSubmissionDependencies(Bash installs the submission's Python dependencies)
 BashInstallSubmissionDependencies --&gt; BashRunSubmission(Bash runs the submission)
 BashRunSubmission --&gt; BashScoreSubmission(Bash scores the submission)
 BashScoreSubmission --&gt; BashValidateRecordScores(Bash validates and records the scores, marking the submission broken if validation fails)
 BashValidateRecordScores --&gt; BashRemoveVirtualEnv(Bash removes the virtual environment for the submission)
-BashRemoveVirtualEnv --&gt; CommitModifiedDatabase(Commit and push the udpated database to GitHub)
+end
+
+BeginBashScriptToRunAllSubmissions --&gt;|For every submission| Bash
+Bash --&gt; CommitModifiedDatabase(Commit and push the udpated database to GitHub)
+
 CommitModifiedDatabase --&gt; StartBuildSphinxDocksWorkflow(Call the build-sphinx-docs workflow)
         </div></section>
 
