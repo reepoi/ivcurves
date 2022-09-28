@@ -145,9 +145,29 @@ def write_overall_scores_to_database(database, pr_number, pr_author, pr_closed_d
         strings representing scores.
     """
     # only want strings as dict keys
-    database[str(pr_number)] = {'username': pr_author,
-                           'submission_datetime': pr_closed_datetime,
-                           'test_sets': overall_scores}
+    database[str(pr_number)] = {
+        'username': pr_author,
+        'submission_datetime': pr_closed_datetime,
+        'test_sets': overall_scores
+    }
+
+
+def mark_submission_broken(database, pr_number, validation_msg):
+    """
+    Adds the entry ``"broken": true`` to indicate that the submission does
+    not run will all the test sets.
+
+    See :func:`write_overall_scores_to_database` for more info on ``database``.
+
+    Parameters
+    ----------
+    database : dict
+        The scores database.
+
+    pr_number : int
+        The pull request number.
+    """
+    database[str(pr_number)]['broken'] = validation_msg
 
 
 def mark_submission_broken(database, pr_number, validation_msg):
