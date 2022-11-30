@@ -33,15 +33,11 @@ jobs:
       - name: Validate and record scores
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          MERGE_COMMIT=$(gh pr view ${{ env.PR_NUMBER }} -q .mergeCommit.oid --json mergeCommit)
-          gh pr view ${{ env.PR_NUMBER }} -q .mergeCommit.oid --json mergeCommit
-          echo $MERGE_COMMIT
-          python3 .github/workflows/utils/record_scores.py
+        run: python3 .github/workflows/utils/record_scores.py
                --pr-author ${{ env.PR_AUTHOR }}
                --pr-number ${{ env.PR_NUMBER }}
                --pr-closed-at ${{ github.event.pull_request.closed_at }}
-               --merge-commit $MERGE_COMMIT
+               --merge-commit $(gh pr view ${{ env.PR_NUMBER }} -q .mergeCommit.oid --json mergeCommit)
                --submission-main ${{ needs.score-submission.outputs.submission-main }}
                --overall-scores-path overall_scores.csv
                --database-path docs/sphinx/source/scores_database.json
