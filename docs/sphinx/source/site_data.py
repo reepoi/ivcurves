@@ -9,6 +9,20 @@ def load_scores_database():
         return json.load(file)
 
 
+def submissions():
+    """
+    Get the submissions in the scores database, excluding those marked broken.
+
+    Returns
+    -------
+        A dict mapping pull request numbers to submission data.
+    """
+    database = load_scores_database()
+    return {pr_number: submission_data
+            for pr_number, submission_data in database.items()
+            if 'broken' not in submission_data.keys()}
+
+
 def to_ghuser(username):
     return f':ghuser:`{username}`'
 
@@ -17,35 +31,62 @@ def to_pull(pr_number):
     return f':pull:`{pr_number}`'
 
 
-def date_from_github_datetime_str(ghdatetime_str):
-    ghdatetime = datetime.datetime.strptime(ghdatetime_str, '%Y-%m-%dT%H:%M:%SZ')
-    return ghdatetime.strftime('%m/%d/%Y')
+def link_to_submission_main_at_commit(commit, username, submission_main):
+    return f'https://github.com/cwhanse/ivcurves/tree/{commit}/submissions/{username}/{submission_main}'
+
+
+def datetime_from_github_datetime_str(ghdatetime_str):
+    return datetime.datetime.strptime(ghdatetime_str, '%Y-%m-%dT%H:%M:%SZ')
 
 
 def leaderboard_entry_list():
-    database = load_scores_database()
-    leaderboard_entries = []
+    entries = []
 
-    for pr_number, submission_data in database.items():
-        # exclude broken submissions from the leaderboard
-        if 'broken' in submission_data.keys():
-            continue
-
-        leaderboard_entries.append({
-            'pr_number': to_pull(pr_number),
+    for pr_number, submission_data in submissions().items():
+        submission_link = link_to_submission_main_at_commit(
+            submission_data["merge_commit"],
+            submission_data["username"],
+            submission_data["submission_main"]
+        )
+        entries.append({
+            'submission': f'`#{pr_number} <{submission_link}>`_',
             'username': to_ghuser(submission_data['username']),
             'overall_score': sum(mp.mpmathify(v) for v in submission_data['test_sets'].values()),
-            'submission_date': date_from_github_datetime_str(submission_data['submission_datetime'])
+            'submission_datetime': datetime_from_github_datetime_str(submission_data['submission_datetime'])
         })
 
-    # order entries from lowest score to highest
-    leaderboard_entries.sort(key=lambda l: l['overall_score'])
+    # order entries from lowest score to highest, and then by submission datetime
+    entries.sort(key=lambda l: l['submission_datetime'])
+    entries.sort(key=lambda l: l['overall_score'])
 
-    for idx, entry in enumerate(leaderboard_entries):
+    for idx, entry in enumerate(entries):
         entry['rank'] = f'#{idx + 1}'
         entry['overall_score'] = mp.nstr(entry['overall_score'])
+        # use the submission date instead of datetime
+        entry['submission_date'] = entry['submission_datetime'].strftime('%m/%d/%Y')
 
-    return leaderboard_entries
+    return entries
+
+
+def compare_submissions_entry_list():
+    entries = []
+
+    for pr_number, submission_data in submissions().items():
+        submission_link = link_to_submission_main_at_commit(
+            submission_data["merge_commit"],
+            submission_data["username"],
+            submission_data["submission_main"]
+        )
+        entry = {
+            'submission': f'`#{pr_number} <{submission_link}>`_',
+            'username': to_ghuser(submission_data['username'])
+        }
+        for name, score in submission_data['test_sets'].items():
+            entry[name] = mp.nstr(mp.mpmathify(score))
+
+        entries.append(entry)
+
+    return entries
 
 
 def test_set_name_to_parameters_and_image():
