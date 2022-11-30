@@ -133,5 +133,16 @@
       "case2": "434.4262508281754880",
       "case3": "434.4262508281754880"
     }
+  },
+  "97": {
+    "username": "reepoi",
+    "submission_datetime": "2022-11-30T17:11:41Z",
+    "merge_commit": "02e9ed2e209b2198d9f8bf18aa15b567ee1e70bb",
+    "submission_main": "solution.py",
+    "test_sets": {
+      "case1": "435.0451701611675228",
+      "case2": "429.9508677298705930",
+      "case3": "429.9508677298705930"
+    }
   }
 }
