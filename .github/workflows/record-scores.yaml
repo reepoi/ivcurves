@@ -31,6 +31,8 @@ jobs:
         with:
           name: overall_scores.csv
       - name: Validate and record scores
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           MERGE_COMMIT=$(gh pr view ${{ env.PR_NUMBER }} -q .mergeCommit.oid --json mergeCommit)
           gh pr view ${{ env.PR_NUMBER }} -q .mergeCommit.oid --json mergeCommit
