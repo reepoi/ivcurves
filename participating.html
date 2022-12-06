@@ -25,6 +25,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
 
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
@@ -34,8 +35,11 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="_static/datatables/setup.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Submissions" href="submissions/index.html" />
@@ -108,7 +112,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="reference/index.html">
-  IV Curves
+  Documentation
  </a>
 </li>
 
@@ -164,15 +168,34 @@
   <a class="reference internal nav-link" href="#submission-workflow">
    Submission Workflow
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#submission-workflow-diagram">
-   Submission Workflow Diagram
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#submission-workflow-diagram">
+     Submission Workflow Diagram
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#submission-requirements">
    Submission Requirements
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-iv-curve-json-test-sets">
+     Reading IV Curve JSON Test Sets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#writing-test-set-results-to-csv-files">
+     Writing Test Set Results to CSV Files
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-your-submission">
+   Testing Your Submission
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -204,7 +227,7 @@
 <section id="submission-workflow">
 <h2>Submission Workflow<a class="headerlink" href="#submission-workflow" title="Permalink to this heading">#</a></h2>
 <p>These are the steps to make a submission as a competitor.
-You may as many submissions as you like, and each will be a separate entry on the leaderboard.</p>
+You may make as many submissions as you like, and each will be a separate entry on the leaderboard.</p>
 <ol class="arabic">
 <li><p>Create a fork of the ivcurves repository.</p></li>
 <li><p>Create a new folder <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;</span></code>.
@@ -213,12 +236,12 @@ This folder will store all of the files you create.</p></li>
 <li><p>Create a file <code class="docutils literal notranslate"><span class="pre">pr_config.json</span></code> with three entries:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;RUN_SCORER&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;REQUIREMENTS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path_to_requirements.txt&gt;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;SUBMISSION_MAIN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path_to_submission_entrypoint.py&gt;&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;REQUIREMENTS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path_to_requirements&gt;.txt&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;SUBMISSION_MAIN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path_to_submission_entrypoint&gt;.py&quot;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">REQUIREMENTS</span></code> and <code class="docutils literal notranslate"><span class="pre">SUBMISSION_MAIN</span></code> must be relative paths to <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;</span></code>.
+<p><code class="docutils literal notranslate"><span class="pre">REQUIREMENTS</span></code> and <code class="docutils literal notranslate"><span class="pre">SUBMISSION_MAIN</span></code> must be paths relative to <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;</span></code>.
 For example, if your Pip requirements file is located at <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;/requirements.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">REQUIREMENTS</span></code> should be <code class="docutils literal notranslate"><span class="pre">./requirements.txt</span></code>.</p>
 </li>
 <li><p>Push your changes to your fork, and then GitHub will automatically run the scorer with your code.
@@ -227,7 +250,7 @@ Click on the icon  to see the results of the scorer.
 The scorer will also provide a CSV file containing your code’s score.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>GitHub will execute your <code class="docutils literal notranslate"><span class="pre">SUBMISSION_MAIN</span></code> from the same folder that contains it.
+<p>GitHub will execute your the entrypoint of your submission <code class="docutils literal notranslate"><span class="pre">SUBMISSION_MAIN</span></code> from the same folder that contains it.
 Therefore, your code may use relative paths when reading and writing files.</p>
 </div>
 </li>
@@ -237,9 +260,8 @@ An ivcurves maintainer will be notified of your pull request.</p></li>
 <li><p>After an ivcurves maintainer reviews and approves your pull request, it will be merged.
 GitHub will post your GitHub username and score to the leaderboard.</p></li>
 </ol>
-</section>
 <section id="submission-workflow-diagram">
-<h2>Submission Workflow Diagram<a class="headerlink" href="#submission-workflow-diagram" title="Permalink to this heading">#</a></h2>
+<h3>Submission Workflow Diagram<a class="headerlink" href="#submission-workflow-diagram" title="Permalink to this heading">#</a></h3>
 <div class="mermaid">
             sequenceDiagram
     participant Competitor
@@ -275,13 +297,27 @@ GitHub will post your GitHub username and score to the leaderboard.</p></li>
     Note over GitHub Actions: Updates leaderboard and submission documentation.
     deactivate GitHub Actions
         </div></section>
+</section>
 <section id="submission-requirements">
 <h2>Submission Requirements<a class="headerlink" href="#submission-requirements" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">test_sets</span></code> folder contains sets of IV curves in JSON files following the <a class="reference internal" href="jsonschema.html#jsonschema"><span class="std std-ref">IV Curve JSON Schema</span></a>:</p>
+<p>Your code is run with the command <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">&lt;filename_of_submission_entrypoint&gt;.py</span></code> from the folder containing the entrypoint of your submission.</p>
+<p><strong>When your code runs, it must:</strong></p>
+<ol class="arabic simple">
+<li><p>Read all of the IV curve JSON test sets in the <code class="docutils literal notranslate"><span class="pre">test_sets</span></code> folder. See <a class="reference internal" href="#reading-iv-curve-json-test-sets">Reading IV Curve JSON Test Sets</a>.</p></li>
+<li><p>For each test set, write a CSV file containing fitted parameters for every IV curve in the test set. See <a class="reference internal" href="#writing-test-set-results-to-csv-files">Writing Test Set Results to CSV Files</a>.</p></li>
+</ol>
+<section id="reading-iv-curve-json-test-sets">
+<h3>Reading IV Curve JSON Test Sets<a class="headerlink" href="#reading-iv-curve-json-test-sets" title="Permalink to this heading">#</a></h3>
+<p>Each JSON test set follows the <a class="reference internal" href="jsonschema.html#jsonschema"><span class="std std-ref">IV Curve JSON Schema</span></a>.
+Here is an example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;Manufacturer&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;Sandia ID&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;Model&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;Serial Number&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;Module ID&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
   <span class="s2">&quot;Material&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;cells_in_series&quot;</span><span class="p">:</span> <span class="mi">72</span><span class="p">,</span>
   <span class="s2">&quot;IV Curves&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">&quot;Index&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -293,16 +329,19 @@ GitHub will post your GitHub username and score to the leaderboard.</p></li>
         <span class="s2">&quot;0.9996667777132812&quot;</span><span class="p">,</span>
         <span class="o">...</span>
       <span class="p">],</span>
+      <span class="s2">&quot;diode_voltage&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;0.09996667777132812&quot;</span><span class="p">,</span>
+        <span class="o">...</span>
+      <span class="p">],</span>
       <span class="s2">&quot;v_oc&quot;</span><span class="p">:</span> <span class="s2">&quot;39.7481074783976643&quot;</span><span class="p">,</span>
       <span class="s2">&quot;i_sc&quot;</span><span class="p">:</span> <span class="s2">&quot;0.9996667777132812&quot;</span><span class="p">,</span>
       <span class="s2">&quot;v_mp&quot;</span><span class="p">:</span> <span class="s2">&quot;33.9368943991155301&quot;</span><span class="p">,</span>
       <span class="s2">&quot;i_mp&quot;</span><span class="p">:</span> <span class="s2">&quot;0.8461238606639279&quot;</span><span class="p">,</span>
       <span class="s2">&quot;p_mp&quot;</span><span class="p">:</span> <span class="s2">&quot;28.7148161079236649&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;cells_in_series&quot;</span><span class="p">:</span> <span class="mi">72</span><span class="p">,</span>
       <span class="s2">&quot;Temperature&quot;</span><span class="p">:</span> <span class="s2">&quot;298.15&quot;</span><span class="p">,</span>
       <span class="s2">&quot;Irradiance&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
       <span class="s2">&quot;Sweep direction&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;Datetime&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+      <span class="s2">&quot;Datetime&quot;</span><span class="p">:</span> <span class="s2">&quot;1970-01-01T00:00:00Z&quot;</span>
     <span class="p">},</span>
     <span class="o">...</span>
   <span class="p">]</span>
@@ -314,15 +353,118 @@ The <code class="docutils literal notranslate"><span class="pre">&quot;Index&quo
 <p>The decimal numbers in each test case are calculated at a higher precision than what a 64-bit floating point number can store.
 To be sure that precision is not lost unintentionally when reading the JSON, the numbers are stored in strings.
 The competitor must decide how to parse these numbers in their submission.
-Here are a couple options:</p>
+Here are some options:</p>
 <ol class="arabic simple">
-<li><p>Parse the strings containing a number into a Python <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>.
+<li><p>Parse the strings containing a number into a Python <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>.
 Any precision that cannot be stored in a 64-bit floating point number will be lost.</p></li>
 <li><p>Use an arbitrary precision math library to parse the strings containing a number.
 The library <a class="reference external" href="https://mpmath.org/">mpmath</a> was used to calculate the IV curve data in these test sets.</p>
 </li>
 </ol>
-<p>For each JSON file <code class="docutils literal notranslate"><span class="pre">&lt;test_set_name&gt;.json</span></code> in <code class="docutils literal notranslate"><span class="pre">test_sets</span></code>, your code must write a CSV file <code class="docutils literal notranslate"><span class="pre">&lt;test_set_name&gt;.csv</span></code> in the folder containing your submission main.
+<p>JSON test sets may be added after you submit your code, so it must not rely on their filename.
+Here is Python code that may be useful for getting a set of all the JSON filenames in <code class="docutils literal notranslate"><span class="pre">test_sets</span></code> dynamically:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># these modules are part of the Python standard library</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+
+<span class="c1"># these modules are installed</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="k">def</span> <span class="nf">get_test_set_filepaths</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a sorted list of pathlib.Path objects pointing to the JSON test set</span>
+<span class="sd">    files. pathlib.Path objects can be passed directly to Python&#39;s ``open``</span>
+<span class="sd">    function to open the JSON file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        A list.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">path_to_test_sets</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s1">&#39;..&#39;</span> <span class="o">/</span> <span class="s1">&#39;..&#39;</span> <span class="o">/</span> <span class="s1">&#39;test_sets&#39;</span>
+    <span class="n">file_entries</span> <span class="o">=</span> <span class="nb">list</span><span class="p">({</span><span class="n">path_to_test_sets</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">entry</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s1">.json&#39;</span>
+                         <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">path_to_test_sets</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()</span>
+                         <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">is_file</span><span class="p">()})</span>
+    <span class="n">file_entries</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">file_entries</span>
+
+
+<span class="k">def</span> <span class="nf">get_test_set_name</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gets a test set filename from a filepath.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filepath : pathlib.Path</span>
+<span class="sd">        A filepath pointing to a JSON test set file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        The test set name given a pathlib.Path object pointing to a JSON</span>
+<span class="sd">        test set file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">filepath</span><span class="o">.</span><span class="n">stem</span>
+
+
+<span class="k">def</span> <span class="nf">json_to_df</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a pandas DataFrame from an IV Curve JSON file.</span>
+<span class="sd">    All of the numerical values stored as strings in the JSON as parsed to</span>
+<span class="sd">    np.float64.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filepath : pathlib.Path</span>
+<span class="sd">        A Path object pointing to the JSON file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        A pandas DataFrame.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">curves_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="n">curves</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">curves_metadata</span><span class="p">[</span><span class="s1">&#39;IV Curves&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="n">curves</span><span class="p">[</span><span class="s1">&#39;cells_in_series&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">curves_metadata</span><span class="p">[</span><span class="s1">&#39;cells_in_series&#39;</span><span class="p">]</span>
+
+    <span class="c1"># set up index</span>
+    <span class="n">curves</span><span class="p">[</span><span class="s1">&#39;Index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">curves</span><span class="p">[</span><span class="s1">&#39;Index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">curves</span> <span class="o">=</span> <span class="n">curves</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">)</span>
+
+    <span class="c1"># convert Voltages, Currents, and diode_voltage from string arrays to</span>
+    <span class="c1"># float arrays. This truncates from precise values to 64-bit precision.</span>
+    <span class="n">is_array</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Voltages&#39;</span><span class="p">,</span> <span class="s1">&#39;Currents&#39;</span><span class="p">,</span> <span class="s1">&#39;diode_voltage&#39;</span><span class="p">]</span>
+    <span class="n">curves</span><span class="p">[</span><span class="n">is_array</span><span class="p">]</span> <span class="o">=</span> <span class="n">curves</span><span class="p">[</span><span class="n">is_array</span><span class="p">]</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># convert from string to float</span>
+    <span class="n">is_number</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;v_oc&#39;</span><span class="p">,</span> <span class="s1">&#39;i_sc&#39;</span><span class="p">,</span> <span class="s1">&#39;v_mp&#39;</span><span class="p">,</span> <span class="s1">&#39;i_mp&#39;</span><span class="p">,</span> <span class="s1">&#39;p_mp&#39;</span><span class="p">,</span> <span class="s1">&#39;Temperature&#39;</span><span class="p">]</span>
+    <span class="n">curves</span><span class="p">[</span><span class="n">is_number</span><span class="p">]</span> <span class="o">=</span> <span class="n">curves</span><span class="p">[</span><span class="n">is_number</span><span class="p">]</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">curves</span>
+
+
+<span class="k">def</span> <span class="nf">json_file_to_dict</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a Python dict of the contents of a JSON file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filepath : pathlib.Path</span>
+<span class="sd">        The filepath pointing to a JSON file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        A Python dict.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="writing-test-set-results-to-csv-files">
+<h3>Writing Test Set Results to CSV Files<a class="headerlink" href="#writing-test-set-results-to-csv-files" title="Permalink to this heading">#</a></h3>
+<p>For each JSON test set <code class="docutils literal notranslate"><span class="pre">&lt;test_set_name&gt;.json</span></code> in <code class="docutils literal notranslate"><span class="pre">test_sets</span></code>, your code must write a CSV file <code class="docutils literal notranslate"><span class="pre">&lt;test_set_name&gt;.csv</span></code> <strong>in the folder containing the entrypoint of your submission.</strong>
 Each CSV file must have these columns:</p>
 <table class="table" id="id1">
 <caption><span class="caption-text">&lt;test_set_name&gt;.csv</span><a class="headerlink" href="#id1" title="Permalink to this table">#</a></caption>
@@ -347,127 +489,31 @@ Each CSV file must have these columns:</p>
 </tr>
 </tbody>
 </table>
-<p>Each row of the CSV file will contain your code’s fitted parameters for each test case in its corresponding test set.
+<p>The column <code class="docutils literal notranslate"><span class="pre">n</span></code> is the diode factor.</p>
+<p>Each row of the CSV file will contain your fitted parameters for each test case in its corresponding test set.
 The script that scores your submission will read your CSV file and use an arbitrary precision math library to parse your fitted parameters.</p>
-<p>Here is some Python code that may be useful for getting a set all of the JSON filenames in <code class="docutils literal notranslate"><span class="pre">test_sets</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">pathlib</span>
-
-
-<span class="k">def</span> <span class="nf">get_test_set_filenames</span><span class="p">():</span>
-    <span class="n">path_to_test_sets</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../../test_sets&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_to_test_sets</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">entry</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s1">.json&#39;</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">path_to_test_sets</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">is_file</span><span class="p">()}</span>
-
-
-<span class="k">def</span> <span class="nf">json_file_to_dict</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</section>
+</section>
+<section id="testing-your-submission">
+<h2>Testing Your Submission<a class="headerlink" href="#testing-your-submission" title="Permalink to this heading">#</a></h2>
+<p>The Python scripts used to score your submission are available for you to run locally.
+For example, you may run <code class="docutils literal notranslate"><span class="pre">ivcurves/compare_curves.py</span></code> to score your fitted parameters for a test set.</p>
+<p>To run <code class="docutils literal notranslate"><span class="pre">ivcurves/compare_curves.py</span></code> for all test sets, run the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 ivcurves/compare_curves.py folder/containing/your/CSV/files/ --csv-ouput-path folder/to/write/your/scores/
 </pre></div>
 </div>
+<p>To run <code class="docutils literal notranslate"><span class="pre">ivcurves/compare_curves.py</span></code> for a single test set <code class="docutils literal notranslate"><span class="pre">&lt;test_set&gt;.json</span></code>, run the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 ivcurves/compare_curves.py folder/containing/your/CSV/files/ --test-set &lt;test_set&gt; --csv-ouput-path folder/to/write/your/scores/
+<span class="c1"># the file extension of the --test-set argument is NOT included</span>
+</pre></div>
+</div>
+<p>See the <a class="reference external" href="reference/compare_curves.html">Compare Curves documentation</a> for more information.</p>
 </section>
 <section id="documenting-your-submission">
 <h2>Documenting Your Submission<a class="headerlink" href="#documenting-your-submission" title="Permalink to this heading">#</a></h2>
-<p>These steps will cover how to add your submission to the ivcurves Submissions documentation.
-The ivcurves documentation uses numpy-sytle docstrings.</p>
-<ol class="arabic">
-<li><p>In the <code class="docutils literal notranslate"><span class="pre">docs/sphinx/source/submissions</span></code> folder, make a new folder <code class="docutils literal notranslate"><span class="pre">&lt;your_GitHub_username&gt;</span></code>.
-All documentation files you create will go in this folder.</p></li>
-<li><p>For each of your submission’s <code class="docutils literal notranslate"><span class="pre">.py</span></code> files in the top level of the <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;</span></code> folder, create a file <code class="docutils literal notranslate"><span class="pre">&lt;your_py_filename.py&gt;.rst</span></code> containing the following:</p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">currentmodule</span><span class="p">::</span> submissions.&lt;your_GitHub_username&gt;.&lt;your_py_filename&gt;
-
-<span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
-   <span class="nc">:toctree:</span> generated/
-
-<span class="cp">   ..</span>
-<span class="cp">      Write the name of each function in &lt;your_py_filename&gt;.py.</span>
-
-<span class="cp">   &lt;function_name1&gt;</span>
-<span class="cp">   &lt;function_name2&gt;</span>
-</pre></div>
-</div>
-</li>
-<li><p>The following steps are for registering your submission’s <code class="docutils literal notranslate"><span class="pre">.py</span></code> files that are in subfolders under <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;</span></code>.</p>
-<ol class="arabic">
-<li><p>Create a folder <code class="docutils literal notranslate"><span class="pre">&lt;your_subfolder_name&gt;</span></code>. This will contain all the documentation files you create in this set of steps.</p></li>
-<li><p>Inside that folder, for each <code class="docutils literal notranslate"><span class="pre">.py</span></code> file under <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;/&lt;your_subfolder_name&gt;</span></code> create a file <code class="docutils literal notranslate"><span class="pre">&lt;your_py_filename.py&gt;.rst</span></code>.</p></li>
-<li><p>Create a file <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> containing the following:</p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">&lt;your_subfolder_name&gt;</span>
-<span class="gh">=====================</span>
-
-<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
-   <span class="nc">:maxdepth:</span> 2
-
-<span class="cp">   ..</span>
-<span class="cp">      Write the name of each .rst file you created here.</span>
-<span class="cp">      The .rst extension should be ommitted.</span>
-
-<span class="cp">   &lt;your_py_filename1&gt;</span>
-<span class="cp">   &lt;your_py_filename2&gt;</span>
-</pre></div>
-</div>
-</li>
-</ol>
-</li>
-<li><p>Back in <code class="docutils literal notranslate"><span class="pre">docs/sphinx/source/submissions/&lt;your_GitHub_username&gt;</span></code>, create a file <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> containing the following:</p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">&lt;your_GitHub_username&gt;</span>
-<span class="gh">======================</span>
-
-<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
-   <span class="nc">:maxdepth:</span> 2
-
-<span class="cp">   ..</span>
-<span class="cp">      Write the name of each .rst file you created for your .py files in</span>
-<span class="cp">      the top level of ``submissions/&lt;your_GitHub_username&gt;``.</span>
-<span class="cp">      The .rst extension should be ommitted.</span>
-
-<span class="cp">   &lt;your_py_filename1&gt;</span>
-<span class="cp">   &lt;your_py_filename2&gt;</span>
-
-<span class="cp">   ..</span>
-<span class="cp">      For each subfolder in ``submissions/&lt;your_GitHub_username&gt;``, write</span>
-<span class="cp">      the following lines:</span>
-
-<span class="cp">   &lt;your_subfolder_name1&gt;/index</span>
-<span class="cp">   &lt;your_subfolder_name2&gt;/index</span>
-</pre></div>
-</div>
-</li>
-<li><p>Suppose your submission has a folder structure like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>submissions/&lt;your_GitHub_username&gt;
-    <span class="p">|</span>- pr_config.json
-    <span class="p">|</span>- requirements.txt
-    <span class="p">|</span>- &lt;your_py_filename1&gt;.py
-    <span class="p">|</span>- &lt;your_subfolder_name1&gt;/
-         <span class="p">|</span>- &lt;your_py_filename1&gt;.py
-</pre></div>
-</div>
-<p>After following the previous steps, your submission’s documentation should have a folder structure like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docs/sphinx/source/submissions/
-  <span class="p">|</span>- index.rst
-  <span class="p">|</span>- &lt;your_GitHub_username&gt;/
-       <span class="p">|</span>- index.rst
-       <span class="p">|</span>- &lt;your_py_filename1&gt;.rst
-       <span class="p">|</span>- &lt;your_subfolder_name1&gt;/
-            <span class="p">|</span>- index.rst
-            <span class="p">|</span>- &lt;your_py_filename1&gt;.rst
-</pre></div>
-</div>
-</li>
-<li><p>Finally, inside <code class="docutils literal notranslate"><span class="pre">submissions/index.rst</span></code> like in the highlighted line:</p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Submissions</span>
-<span class="gh">===========</span>
-
-<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
-   <span class="nc">:maxdepth:</span> 2
-
-   &lt;other_GitHub_username1&gt;/index
-<span class="hll">   &lt;your_GitHub_username&gt;/index
-</span></pre></div>
-</div>
-</li>
-</ol>
-<p>To help describe or contextualize your code, you may create links to external sites using this Sphinx rst directive in your docstrings:</p>
+<p>These steps will cover how to add documentation to your submission, and display it on the ivcurves Submissions page.
+The ivcurves documentation uses numpy-sytle docstrings, so your module and function docstrings should follow that style.
+In your docstrings, you may create links to external sites to help describe or contextualize your code using this Sphinx rst directive:</p>
 <blockquote>
 <div><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>Link to an <span class="s">`external site`_</span>.
 
@@ -482,6 +528,27 @@ Link to <span class="s">`Sphinx documentation`_</span>.
 </pre></div>
 </div>
 </div></blockquote>
+<p>After writing docstrings for your submission, you need to generate Sphinx .rst files for your submission using a command line program provided in ivcurves.
+First, ensure that none of your submission’s Python files are named <code class="docutils literal notranslate"><span class="pre">index.py</span></code> because <code class="docutils literal notranslate"><span class="pre">index</span></code> is reversed for the Sphinx documentation.
+To generate the .rst files, run the command</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 docs/sphinx/source/gen_submission_rst.py submissions/&lt;your_GitHub_username&gt;/pr_config.json
+</pre></div>
+</div>
+</div></blockquote>
+<p>It will print out a file tree of the .rst files created.
+The .rst files named after a Python file in your submission will have contents similar to</p>
+<blockquote>
+<div><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="gh">&lt;your_py_filename&gt;</span>
+</span><span class="gh">==================</span>
+
+<span class="p">..</span> <span class="ow">automodule</span><span class="p">::</span> submissions.&lt;your_GitHub_username&gt;.&lt;your_py_filename&gt;
+   <span class="nc">:members:</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The highlighted line above is the title of the documentation page for that Python file.
+You may change it, but make sure your entire title is underlined by the equal signs on the line below.</p>
 </section>
 </section>
 
@@ -530,7 +597,7 @@ Link to <span class="s">`Sphinx documentation`_</span>.
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
 </p>
   </div>
   
