@@ -9,7 +9,7 @@ Submission Workflow
 -------------------
 
 These are the steps to make a submission as a competitor.
-You may make as many submissions as you like, and each will be a separate entry on the leaderboard.
+You can make multiple submissions, and each will be a separate entry on the leaderboard.
 
 #. Create a fork of the ivcurves repository.
 #. Create a new folder ``submissions/<your_GitHub_username>``.
@@ -201,7 +201,7 @@ Here is Python code that may be useful for getting a set of all the JSON filenam
         return filepath.stem
 
 
-    def json_to_df(filepath):
+    def json_file_to_df(filepath):
         """
         Creates a pandas DataFrame from an IV Curve JSON file.
         All of the numerical values stored as strings in the JSON as parsed to
@@ -322,7 +322,7 @@ In your docstrings, you may create links to external sites to help describe or c
       .. _Sphinx documentation: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#hyperlinks
 
 After writing docstrings for your submission, you need to generate Sphinx .rst files for your submission using a command line program provided in ivcurves.
-First, ensure that none of your submission's Python files are named ``index.py`` because ``index`` is reversed for the Sphinx documentation.
+First, ensure that none of your submission's Python files are named ``index.py`` because ``index`` is reserved for the Sphinx documentation.
 To generate the .rst files, run the command
 
    .. code-block:: bash
