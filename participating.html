@@ -227,7 +227,7 @@
 <section id="submission-workflow">
 <h2>Submission Workflow<a class="headerlink" href="#submission-workflow" title="Permalink to this heading">#</a></h2>
 <p>These are the steps to make a submission as a competitor.
-You may make as many submissions as you like, and each will be a separate entry on the leaderboard.</p>
+You can make multiple submissions, and each will be a separate entry on the leaderboard.</p>
 <ol class="arabic">
 <li><p>Create a fork of the ivcurves repository.</p></li>
 <li><p>Create a new folder <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;</span></code>.
@@ -407,7 +407,7 @@ Here is Python code that may be useful for getting a set of all the JSON filenam
     <span class="k">return</span> <span class="n">filepath</span><span class="o">.</span><span class="n">stem</span>
 
 
-<span class="k">def</span> <span class="nf">json_to_df</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">json_file_to_df</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a pandas DataFrame from an IV Curve JSON file.</span>
 <span class="sd">    All of the numerical values stored as strings in the JSON as parsed to</span>
@@ -529,7 +529,7 @@ Link to <span class="s">`Sphinx documentation`_</span>.
 </div>
 </div></blockquote>
 <p>After writing docstrings for your submission, you need to generate Sphinx .rst files for your submission using a command line program provided in ivcurves.
-First, ensure that none of your submission’s Python files are named <code class="docutils literal notranslate"><span class="pre">index.py</span></code> because <code class="docutils literal notranslate"><span class="pre">index</span></code> is reversed for the Sphinx documentation.
+First, ensure that none of your submission’s Python files are named <code class="docutils literal notranslate"><span class="pre">index.py</span></code> because <code class="docutils literal notranslate"><span class="pre">index</span></code> is reserved for the Sphinx documentation.
 To generate the .rst files, run the command</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 docs/sphinx/source/gen_submission_rst.py submissions/&lt;your_GitHub_username&gt;/pr_config.json
