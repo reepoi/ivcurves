@@ -31,9 +31,6 @@
   <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -234,11 +231,11 @@ You can make multiple submissions, and each will be a separate entry on the lead
 This folder will store all of the files you create.</p></li>
 <li><p>Write or copy your submission’s code inside <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;</span></code>.</p></li>
 <li><p>Create a file <code class="docutils literal notranslate"><span class="pre">pr_config.json</span></code> with three entries:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;RUN_SCORER&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;REQUIREMENTS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path_to_requirements&gt;.txt&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;SUBMISSION_MAIN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path_to_submission_entrypoint&gt;.py&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;RUN_SCORER&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;REQUIREMENTS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path_to_requirements&gt;.txt&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SUBMISSION_MAIN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path_to_submission_entrypoint&gt;.py&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">REQUIREMENTS</span></code> and <code class="docutils literal notranslate"><span class="pre">SUBMISSION_MAIN</span></code> must be paths relative to <code class="docutils literal notranslate"><span class="pre">submissions/&lt;your_GitHub_username&gt;</span></code>.
@@ -373,7 +370,7 @@ Here is Python code that may be useful for getting a set of all the JSON filenam
 
 
 <span class="k">def</span> <span class="nf">get_test_set_filepaths</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a sorted list of pathlib.Path objects pointing to the JSON test set</span>
 <span class="sd">    files. pathlib.Path objects can be passed directly to Python&#39;s ``open``</span>
 <span class="sd">    function to open the JSON file.</span>
@@ -391,7 +388,7 @@ Here is Python code that may be useful for getting a set of all the JSON filenam
 
 
 <span class="k">def</span> <span class="nf">get_test_set_name</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets a test set filename from a filepath.</span>
 
 <span class="sd">    Parameters</span>
@@ -408,7 +405,7 @@ Here is Python code that may be useful for getting a set of all the JSON filenam
 
 
 <span class="k">def</span> <span class="nf">json_file_to_df</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a pandas DataFrame from an IV Curve JSON file.</span>
 <span class="sd">    All of the numerical values stored as strings in the JSON as parsed to</span>
 <span class="sd">    np.float64.</span>
@@ -445,7 +442,7 @@ Here is Python code that may be useful for getting a set of all the JSON filenam
 
 
 <span class="k">def</span> <span class="nf">json_file_to_dict</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a Python dict of the contents of a JSON file.</span>
 
 <span class="sd">    Parameters</span>
@@ -499,11 +496,11 @@ The script that scores your submission will read your CSV file and use an arbitr
 <p>The Python scripts used to score your submission are available for you to run locally.
 For example, you may run <code class="docutils literal notranslate"><span class="pre">ivcurves/compare_curves.py</span></code> to score your fitted parameters for a test set.</p>
 <p>To run <code class="docutils literal notranslate"><span class="pre">ivcurves/compare_curves.py</span></code> for all test sets, run the command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 ivcurves/compare_curves.py folder/containing/your/CSV/files/ --csv-ouput-path folder/to/write/your/scores/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>ivcurves/compare_curves.py<span class="w"> </span>folder/containing/your/CSV/files/<span class="w"> </span>--csv-ouput-path<span class="w"> </span>folder/to/write/your/scores/
 </pre></div>
 </div>
 <p>To run <code class="docutils literal notranslate"><span class="pre">ivcurves/compare_curves.py</span></code> for a single test set <code class="docutils literal notranslate"><span class="pre">&lt;test_set&gt;.json</span></code>, run the command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 ivcurves/compare_curves.py folder/containing/your/CSV/files/ --test-set &lt;test_set&gt; --csv-ouput-path folder/to/write/your/scores/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>ivcurves/compare_curves.py<span class="w"> </span>folder/containing/your/CSV/files/<span class="w"> </span>--test-set<span class="w"> </span>&lt;test_set&gt;<span class="w"> </span>--csv-ouput-path<span class="w"> </span>folder/to/write/your/scores/
 <span class="c1"># the file extension of the --test-set argument is NOT included</span>
 </pre></div>
 </div>
@@ -532,7 +529,7 @@ Link to <span class="s">`Sphinx documentation`_</span>.
 First, ensure that none of your submission’s Python files are named <code class="docutils literal notranslate"><span class="pre">index.py</span></code> because <code class="docutils literal notranslate"><span class="pre">index</span></code> is reserved for the Sphinx documentation.
 To generate the .rst files, run the command</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 docs/sphinx/source/gen_submission_rst.py submissions/&lt;your_GitHub_username&gt;/pr_config.json
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>docs/sphinx/source/gen_submission_rst.py<span class="w"> </span>submissions/&lt;your_GitHub_username&gt;/pr_config.json
 </pre></div>
 </div>
 </div></blockquote>
@@ -598,7 +595,7 @@ If you change the title of the documentation page for <code class="docutils lite
   
   <div class="footer-item">
     <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.1.2.<br>
 </p>
   </div>
   
