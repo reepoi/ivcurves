@@ -54,6 +54,7 @@ jobs:
           echo 'run-scorer=${{ env.RUN_SCORER }}' >> $GITHUB_OUTPUT
           echo 'requirements-filename=${{ env.REQUIREMENTS_FILENAME }}' >> $GITHUB_OUTPUT
           echo 'requirements-path=${{ env.REQUIREMENTS_PATH }}' >> $GITHUB_OUTPUT
+          echo 'submission-main=${{ env.SUBMISSION_MAIN }}' >> $GITHUB_OUTPUT
           echo 'submission-main-filename=${{ env.SUBMISSION_MAIN_FILENAME }}' >> $GITHUB_OUTPUT
           echo 'submission-main-path=${{ env.SUBMISSION_MAIN_PATH }}' >> $GITHUB_OUTPUT
 
