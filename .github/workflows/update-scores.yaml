@@ -37,7 +37,7 @@ jobs:
           echo PR_DATA=$PR_DATA >> ${{ github.env }}
       - name: Set pull request data output
         id: matrix
-        run: echo 'pr-data=${{ env.PR_DATA }}' >> $GITHUB_OUTPUT
+        run: echo '::set-output name=pr-data::${{ env.PR_DATA }}'
 
   collect-pr-submissions:
     runs-on: ubuntu-latest
