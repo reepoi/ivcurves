@@ -133,28 +133,6 @@
       "case3": "425.4531244689933694"
     }
   },
-  "8": {
-    "username": "cwhanse",
-    "submission_datetime": "2022-09-28T20:34:38Z",
-    "merge_commit": "59fcd69ed3430fecd38d94b78aa7a9bfa6c71bba",
-    "submission_main": "sandia_simple.py",
-    "test_sets": {
-      "case1": "31.0007537115150760",
-      "case2": "53.0007537115150760",
-      "case3": "61.0007537115150760"
-    }
-  },
-  "1": {
-    "username": "a",
-    "submission_datetime": "2022-08-30T13:40:05Z",
-    "merge_commit": "02e9ed2e209b2198d9f8bf18aa15b567ee1e70bb",
-    "submission_main": "solution.py",
-    "test_sets": {
-      "case1": "437.1951292580645783",
-      "case2": "434.4262508281754880",
-      "case3": "434.4262508281754880"
-    }
-  },
   "97": {
     "username": "reepoi",
     "submission_datetime": "2022-11-30T17:11:41Z",
