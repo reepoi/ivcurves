@@ -22,9 +22,9 @@
   },
   "83": {
     "username": "reepoi",
-    "merge_commit": "02e9ed2e209b2198d9f8bf18aa15b567ee1e70bb",
-    "submission_main": "solution.py",
     "submission_datetime": "2022-08-15T14:26:59Z",
+    "merge_commit": "b430b51f772b308a0fef85704f8cf0adc369b636",
+    "submission_main": "works with spaces/test/so lution.py",
     "test_sets": {
       "case1": "438.2491416282271253",
       "case2": "436.6555645081116309",
@@ -70,8 +70,8 @@
   "87": {
     "username": "uofutahcapstoneahjregistryteam",
     "submission_datetime": "2022-08-30T13:40:05Z",
-    "merge_commit": "02e9ed2e209b2198d9f8bf18aa15b567ee1e70bb",
-    "submission_main": "solution.py",
+    "merge_commit": "90057ccb7402567c8faed38e5d3aa7d555388793",
+    "submission_main": "./solution.py",
     "test_sets": {
       "case1": "1417683649516.6594532091077234",
       "case2": "620633208098.6385822304233556",
@@ -81,8 +81,8 @@
   "88": {
     "username": "reepoi",
     "submission_datetime": "2022-09-02T01:15:52Z",
-    "merge_commit": "02e9ed2e209b2198d9f8bf18aa15b567ee1e70bb",
-    "submission_main": "solution.py",
+    "merge_commit": "0089be464d1e86678018900966914cef3142d7aa",
+    "submission_main": "./solution.py",
     "test_sets": {
       "case1": "435.0451701611675228",
       "case2": "429.9508677298705930",
@@ -92,8 +92,8 @@
   "89": {
     "username": "reepoi",
     "submission_datetime": "2022-09-02T01:32:51Z",
-    "merge_commit": "02e9ed2e209b2198d9f8bf18aa15b567ee1e70bb",
-    "submission_main": "solution.py",
+    "merge_commit": "de6ce3cf15a3cbcfa5d7f1431ad7201eb6f17ba4",
+    "submission_main": "./solution.py",
     "test_sets": {
       "case1": "432.8258010218316144",
       "case2": "425.4531244689933694",
@@ -103,8 +103,8 @@
   "90": {
     "username": "reepoi",
     "submission_datetime": "2022-09-02T01:39:49Z",
-    "merge_commit": "02e9ed2e209b2198d9f8bf18aa15b567ee1e70bb",
-    "submission_main": "solution.py",
+    "merge_commit": "62df6df9d9182b8a70ea96c6cf4e7fdac28fdfe6",
+    "submission_main": "./solution.py",
     "test_sets": {
       "case1": "428.1210041054684884",
       "case2": "416.3827192133555640",
@@ -114,8 +114,8 @@
   "92": {
     "username": "reepoi",
     "submission_datetime": "2022-09-02T14:07:25Z",
-    "merge_commit": "02e9ed2e209b2198d9f8bf18aa15b567ee1e70bb",
-    "submission_main": "solution.py",
+    "merge_commit": "1df62cd90b3b5b84b0ef9cab6de8ae3808bacce9",
+    "submission_main": "./solution.py",
     "test_sets": {
       "case1": "432.8258010218316144",
       "case2": "425.4531244689933694",
@@ -126,7 +126,7 @@
     "username": "reepoi",
     "submission_datetime": "2022-11-30T17:11:41Z",
     "merge_commit": "02e9ed2e209b2198d9f8bf18aa15b567ee1e70bb",
-    "submission_main": "solution.py",
+    "submission_main": "./solution.py",
     "test_sets": {
       "case1": "435.0451701611675228",
       "case2": "429.9508677298705930",
@@ -137,7 +137,7 @@
     "username": "reepoi",
     "submission_datetime": "2023-01-10T03:45:38Z",
     "merge_commit": "5080071055571b09eae3462cec6b13d06b4c4537",
-    "submission_main": "solution.py",
+    "submission_main": "./solution.py",
     "test_sets": {
       "case1": "432.8258010218316144",
       "case2": "425.4531244689933694",
