@@ -25,29 +25,29 @@ jobs:
           import json
           with open('${{ env.DATABASE_PATH }}', 'r') as file:
               database = json.load(file)
-          pr_data = []
+          pr_data = dict(pr_number=[], username=[], submission_datetime=[])
           for pr_number, data in database.items():
               # exclude submissions already marked broken
               if 'broken' in data.keys():
                   continue
-              pair = [pr_number, data['username'], data['submission_datetime']]
-              pr_data.append(pair)
-          print(pr_data)
+              pr_data['pr_number'].append(pr_number)
+              pr_data['username'].append(data['username'])
+              pr_data['submission_datetime'].append(data['submission_datetime'])
+          print(json.dumps(pr_data))
           ")
           echo PR_DATA=$PR_DATA >> ${{ github.env }}
       - name: Set pull request data output
         id: matrix
-        run: echo '::set-output name=pr-data::${{ env.PR_DATA }}'
+        run: echo 'pr-data=${{ env.PR_DATA }}' >> $GITHUB_OUTPUT
 
   collect-pr-submissions:
     runs-on: ubuntu-latest
     needs: get-pr-data
     strategy:
-      matrix:
-        pr-data: ${{ fromJson(needs.get-pr-data.outputs.pr-data) }}
+      matrix: ${{ fromJson(needs.get-pr-data.outputs.pr-data) }}
     env:
-      PR_NUMBER: ${{ matrix.pr-data[0] }}
-      PR_USERNAME: ${{ matrix.pr-data[1] }}
+      PR_NUMBER: ${{ matrix.pr_number }}
+      PR_USERNAME: ${{ matrix.username }}
     steps:
       - name: Checkout base main (with entire commit history)
         uses: actions/checkout@v3
@@ -57,10 +57,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          MERGE_COMMIT=$(gh pr view ${{ env.PR_NUMBER }} -q .mergeCommit.oid --json mergeCommit)
-          echo MERGE_COMMIT=$MERGE_COMMIT >> ${{ github.env }}
+          MERGE_SHA=$(gh pr view ${{ env.PR_NUMBER }} -q .mergeCommit.oid --json mergeCommit)
+          echo MERGE_SHA=$MERGE_SHA >> ${{ github.env }}
       - name: Checkout merge commit
-        run: git checkout ${{ env.MERGE_COMMIT }}
+        run: git checkout ${{ env.MERGE_SHA }}
       - name: Rename submission folder
         working-directory: submissions
         # '--' is not allowed in GitHub usernames, so it is used to
