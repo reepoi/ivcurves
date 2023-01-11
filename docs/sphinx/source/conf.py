@@ -80,7 +80,6 @@ html_css_files = [
 ]
 
 html_js_files = [
-    'https://code.jquery.com/jquery-3.6.3.slim.min.js',
     'https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js',
     'datatables/setup.js'  # helper script to create the DataTables
 ]
