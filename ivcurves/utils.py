@@ -1,10 +1,13 @@
-import os
 import csv
-import pathlib
+import json
+from pathlib import Path
+import scipy
 from mpmath import mp
 
 
-TEST_SETS_DIR = f'{pathlib.Path(__file__).parent}/../test_sets'
+IVCURVES_DIR = Path(__file__).parent
+REPO_ROOT_DIR = IVCURVES_DIR / '..'
+TEST_SETS_DIR = IVCURVES_DIR / 'test_sets'
 IV_PARAMETER_NAMES = ['photocurrent', 'saturation_current',
                       'resistance_series', 'resistance_shunt', 'n',
                       'cells_in_series']
@@ -23,7 +26,7 @@ def set_globals():
     - ``mpmath``: The precision of calculations (``mp.dps``) is set to 40
       decimal places.
     """
-    mp.dps = 40 # set precision, 16*2 rounded up
+    mp.dps = 40  # set precision, 16*2 rounded up
 
 
 def constants():
@@ -32,10 +35,14 @@ def constants():
     """
     num_pts = 100
     precision = 16
-    atol = mp.mpmathify(1e-16)
+    atol = mp.mpmathify('1e-16')
 
     # Boltzmann's const (J/K), electron charge (C), temp (K)
-    k, q, temp_cell = map(mp.mpmathify, [1.380649e-23, 1.60217663e-19, 298.15])
+    k, q, temp_cell = map(mp.mpmathify, [
+        scipy.constants.Boltzmann,
+        scipy.constants.elementary_charge,
+        298.15
+    ])
     vth = (k * temp_cell) / q
 
     return {'k': k, 'q': q, 'temp_cell': temp_cell, 'vth': vth, 'atol': atol,
@@ -67,13 +74,17 @@ def mp_num_digits_left_of_decimal(num_mpf):
         # force mpf to string in decimal format, no scientific notation
         # mpf string will have precision*2 significant digits
         # all leading zeros are stripped
-        return mp.nstr(num_mpf, n=precision*2, min_fixed=-mp.inf,
-                       max_fixed=mp.inf).find('.')
+        res = mp.nstr(num_mpf, n=precision*2, min_fixed=-mp.inf,
+                      max_fixed=mp.inf).find('.')
+        if num_mpf < 0:
+            return res - 1  # ignore negative sign '-'
+        else:
+            return res
 
 
 def mp_nstr_precision_func(num_mpf):
     r"""
-    Converts an mpmath float to a string with 16 significant digits
+    Converts an mpmath float to a string with at least 16 significant digits
     after the decimal place.
 
     Parameters
@@ -84,18 +95,27 @@ def mp_nstr_precision_func(num_mpf):
     Returns
     -------
     str
-        A string representation of ``num_mpf`` with 16 significant digits
-        after the decimal place.
+        A string representation of ``num_mpf`` with at least 16 significant
+        digits after the decimal place.
     """
     precision = constants()['precision']
     ldigits = mp_num_digits_left_of_decimal(num_mpf)
-    return mp.nstr(num_mpf, n=ldigits+precision, strip_zeros=False)
+
+    # Stringifying to 16 significant digits truncates or rounds the mp.mpf
+    # value. The lost precision can cause error greater than 1e-16 when
+    # calculating the difference between the left and right side of the single
+    # diode equation. The number of required sigfigs in the string is increased
+    # by 3 to ensure the JSON test set values are still precise enough when
+    # converted into mp.mpf values. The required sigfigs may need to be
+    # increased when new JSON test sets are added.
+    sigfigs = ldigits + precision + 3
+    return mp.nstr(num_mpf, n=sigfigs, strip_zeros=False)
 
 
 def read_iv_curve_parameter_sets(filename):
     r"""
     Returns a dictionary of indices to a list of these values:
-    Index, photocurrent, saturation_current, resistance_series,
+    photocurrent, saturation_current, resistance_series,
     resistance_shunt, n, and cells_in_series.
     The indices and values are read from the CSV file at ``filename``.
 
@@ -116,7 +136,7 @@ def read_iv_curve_parameter_sets(filename):
         mapping = {}
         for row in reader:
             mapping[int(row['Index'])] = [mp.mpmathify(row[col])
-                                            for col in IV_PARAMETER_NAMES]
+                                          for col in IV_PARAMETER_NAMES]
         return mapping
 
 
@@ -148,13 +168,47 @@ def get_filenames_in_directory(directory_path):
     Returns a set of entries in the directory ``directory_path``.
     The filenames do not have file extensions.
 
+    Parameters
+    ----------
+    directory_path : pathlib.Path
+        A directory pointer.
+
     Returns
     -------
     set
         A set of filenames without file extensions.
     """
-    return {entry.stem for entry in pathlib.Path(directory_path).iterdir()}
+    return {entry.stem for entry in directory_path.iterdir()}
+
+
+def load_json(path):
+    """
+    Returns a dict of JSON at ``path``.
+
+    Parameters
+    ----------
+    path : pathlib.Path, str
+        The path to the JSON file.
+
+    Returns
+    -------
+        dict
+    """
+    with open(path) as f:
+        return json.load(f)
+
+
+def save_json(json_dict, path):
+    """
+    Saves a dict of JSON to the file ``path`` with indent 2.
+
+    Parameters
+    ----------
+    path : pathlib.Path, str
+        The path where the JSOn should be saved.
+    """
+    with open(path, 'w') as file:
+        return json.dump(json_dict, file, indent=2)
 
 
 set_globals()
-
