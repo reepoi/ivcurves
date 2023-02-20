@@ -168,7 +168,7 @@
     "username": "reepoi",
     "submission_datetime": "2023-02-20T19:52:34Z",
     "merge_commit": "63a25851abb52733da0067d179675e3474f74ef9",
-    "submission_main": "solution.py",
+    "submission_main": "./solution.py",
     "test_sets": {
       "case1": "436.3664131102987994188",
       "case2": "434.4262454202349162973",
