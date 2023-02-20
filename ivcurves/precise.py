@@ -490,7 +490,7 @@ def get_argparser():
         description='Generates precise IV curve data from the parameters of '
                     'the single diode equation.'
     )
-    parser.add_argument('save_json_path', dest='save_json_path', type=str,
+    parser.add_argument('save_json_path', type=str,
                         help='Saves the test set JSON at the given path.')
     parser.add_argument('--test-set', dest='test_set_filename', type=str,
                         help='Test set filename (excluding file extension) to '

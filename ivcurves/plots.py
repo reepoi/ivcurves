@@ -215,7 +215,7 @@ if __name__ == '__main__':
 
     # plot compare_curves scoring visualization
     if args.fitted_files_path:
-        test_sets_to_score = compare_curves.get_test_sets_to_score(args.fitted_files_path, args.test_set)
+        test_sets_to_score = compare_curves.get_test_sets_to_score(args.fitted_files_path)
         num_compare_pts = 10
         num_total_pts = 200
         for name in test_sets_to_score:

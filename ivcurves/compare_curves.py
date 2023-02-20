@@ -335,7 +335,7 @@ def get_test_sets_to_score(fitted_files_directory, test_set=''):
     """
     test_set_names = utils.get_filenames_in_directory(utils.TEST_SETS_DIR)
     test_sets_to_score = []
-    if test_set:
+    if test_set != '':
         if test_set not in test_set_names:
             raise ValueError(f"'{test_set}' is not a test set")
         test_sets_to_score = [test_set]
