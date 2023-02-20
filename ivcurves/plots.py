@@ -140,7 +140,7 @@ def scoring_visualization(test_set_filename, case_parameter_set_idx, iv_known,
     if not pts:
         pts = []
 
-    fig, ax = plt.subplot()
+    fig, ax = plt.subplots()
 
     # plot known curve (known parameters)
     known_xs, known_ys = compare_curves.get_curve(iv_known, vth, num_pts, atol)
