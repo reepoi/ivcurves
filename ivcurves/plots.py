@@ -36,8 +36,8 @@ def plot_precise_iv_curves(test_set_filename, case_parameter_sets, vth, atol, nu
         Number of points calculated on IV curve.
     """
     plt.style.use('seaborn-v0_8-darkgrid')
-    fig, ax = plt.subplots()
     for idx, (il, io, rs, rsh, n, ns) in case_parameter_sets.items():
+        fig, ax = plt.subplots()
         params = il, io, rs, rsh, n, vth, ns
         ax.set_xlabel('Voltage')
         ax.set_ylabel('Current')
