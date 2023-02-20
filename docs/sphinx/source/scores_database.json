@@ -29,7 +29,8 @@
       "case1": "437.4206422653187284744",
       "case2": "436.6555631590479733248",
       "case3": "436.6555631590479733248"
-    }
+    },
+    "broken": "Missing scores from these test sets: case3a, case3b, case3c, case3d"
   },
   "84": {
     "username": "reepoi",
@@ -76,7 +77,8 @@
       "case1": "1417683649552.9549956136922090626",
       "case2": "620633208081.3123285546577708584",
       "case3": "620633208081.3123285546577708584"
-    }
+    },
+    "broken": "Missing scores from these test sets: case3a, case3b, case3c, case3d"
   },
   "88": {
     "username": "reepoi",
@@ -87,7 +89,8 @@
       "case1": "434.2155858884507007127",
       "case2": "429.9508460624310893889",
       "case3": "429.9508460624310893889"
-    }
+    },
+    "broken": "Missing scores from these test sets: case3a, case3b, case3c, case3d"
   },
   "89": {
     "username": "reepoi",
@@ -98,7 +101,8 @@
       "case1": "431.9947663771071827013",
       "case2": "425.4530756482524808766",
       "case3": "425.4530756482524808766"
-    }
+    },
+    "broken": "Missing scores from these test sets: case3a, case3b, case3c, case3d"
   },
   "90": {
     "username": "reepoi",
@@ -109,7 +113,8 @@
       "case1": "427.2852987385682079054",
       "case2": "416.3825830934797104049",
       "case3": "416.3825830934797104049"
-    }
+    },
+    "broken": "Missing scores from these test sets: case3a, case3b, case3c, case3d"
   },
   "92": {
     "username": "reepoi",
@@ -120,7 +125,8 @@
       "case1": "431.9947663771071827013",
       "case2": "425.4530756482524808766",
       "case3": "425.4530756482524808766"
-    }
+    },
+    "broken": "Missing scores from these test sets: case3a, case3b, case3c, case3d"
   },
   "97": {
     "username": "reepoi",
@@ -131,7 +137,8 @@
       "case1": "434.2155858884507007127",
       "case2": "429.9508460624310893889",
       "case3": "429.9508460624310893889"
-    }
+    },
+    "broken": "Missing scores from these test sets: case3a, case3b, case3c, case3d"
   },
   "100": {
     "username": "reepoi",
@@ -142,7 +149,8 @@
       "case1": "431.9947663771071827013",
       "case2": "425.4530756482524808766",
       "case3": "425.4530756482524808766"
-    }
+    },
+    "broken": "Missing scores from these test sets: case3a, case3b, case3c, case3d"
   },
   "102": {
     "username": "reepoi",
@@ -153,6 +161,7 @@
       "case1": "434.2155858884507007127",
       "case2": "429.9508460624310893889",
       "case3": "429.9508460624310893889"
-    }
+    },
+    "broken": "Missing scores from these test sets: case3a, case3b, case3c, case3d"
   }
 }
