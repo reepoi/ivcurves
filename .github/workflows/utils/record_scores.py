@@ -198,6 +198,17 @@ def record_scores():
             args.merge_commit, args.submission_main, overall_scores
         )
     elif args.broken_if_invalid:
+        # to comply with the scores_database jsonschema, set missing test set scores to an impossible score
+        valid_test_set_filenames = utils.get_filenames_in_directory(utils.TEST_SETS_DIR)
+        missing_test_set_filenames = valid_test_set_filenames - set(overall_scores.keys())
+        if len(missing_test_set_filenames):
+            for name in valid_test_set_filenames:
+                overall_scores[name] = overall_scores.get(name, '-1')
+            write_overall_scores_to_database(
+                database, args.pr_number, args.pr_author, args.pr_closed_datetime,
+                args.merge_commit, args.submission_main, overall_scores
+            )
+
         mark_submission_broken(database, args.pr_number, validation_msg)
     else:
         raise ValueError(validation_msg)
