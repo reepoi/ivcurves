@@ -163,5 +163,20 @@
       "case3": "429.9508460624310893889"
     },
     "broken": "Missing scores from these test sets: case3a, case3b, case3c, case3d"
+  },
+  "105": {
+    "username": "reepoi",
+    "submission_datetime": "2023-02-20T19:52:34Z",
+    "merge_commit": "63a25851abb52733da0067d179675e3474f74ef9",
+    "submission_main": "solution.py",
+    "test_sets": {
+      "case1": "436.3664131102987994188",
+      "case2": "434.4262454202349162973",
+      "case3": "434.4262454202349162973",
+      "case3a": "13.7129982944050998439",
+      "case3b": "13.6113471739309170618",
+      "case3c": "13.6815614546616949498",
+      "case3d": "13.4952371317829612062"
+    }
   }
 }
