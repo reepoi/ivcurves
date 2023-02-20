@@ -8,7 +8,7 @@ def solution():
     r"""
     This is a test solution.
     """
-    parameters = 1 + np.zeros((32, 6))
+    parameters = 2 + np.zeros((32, 6))
     header = 'Index,photocurrent,saturation_current,resistance_series,resistance_shunt,n,cells_in_series'.split(',')
 
     for name in utils.get_filenames_in_directory(utils.TEST_SETS_DIR):
