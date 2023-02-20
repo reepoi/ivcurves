@@ -186,11 +186,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="generated/ivcurves.compare_curves.iv_plotter.html">
-     ivcurves.compare_curves.iv_plotter
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="generated/ivcurves.compare_curves.get_test_sets_to_score.html">
      ivcurves.compare_curves.get_test_sets_to_score
     </a>
@@ -245,11 +240,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="generated/ivcurves.precise.get_precise_i.html">
      ivcurves.precise.get_precise_i
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="generated/ivcurves.precise.plot_iv_curves.html">
-     ivcurves.precise.plot_iv_curves
     </a>
    </li>
    <li class="toctree-l2">
@@ -317,11 +307,33 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="github_workflows/index.html">
-   GitHub Workflows
+  <a class="reference internal" href="plots.html">
+   Plots
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/ivcurves.plots.plot_precise_iv_curves.html">
+     ivcurves.plots.plot_precise_iv_curves
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/ivcurves.plots.scoring_visualization.html">
+     ivcurves.plots.scoring_visualization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="github_workflows/index.html">
+   GitHub Workflows
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -355,8 +367,8 @@
     <a class="reference internal" href="github_workflows/utils/index.html">
      Utility Python Scripts
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-    <label for="toctree-checkbox-5">
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -365,8 +377,8 @@
       <a class="reference internal" href="github_workflows/utils/print_json_as_env.html">
        Print JSON as ENV
       </a>
-      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-      <label for="toctree-checkbox-6">
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
        <i class="fas fa-chevron-down">
        </i>
       </label>
@@ -402,8 +414,8 @@
       <a class="reference internal" href="github_workflows/utils/record_scores.html">
        Record Scores
       </a>
-      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-      <label for="toctree-checkbox-7">
+      <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+      <label for="toctree-checkbox-8">
        <i class="fas fa-chevron-down">
        </i>
       </label>
@@ -484,7 +496,6 @@
 <p>Measure the distance between IV curves generated from the parameters of the single diode equation.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">usage: compare_curves.py [-h] [--test-set TEST_SET]</span>
 <span class="go">                         [--csv-output-path CSV_OUTPUT_PATH]</span>
-<span class="go">                         [--plot | --no-plot]</span>
 <span class="go">                         fitted_files_directory</span>
 </pre></div>
 </div>
@@ -512,12 +523,6 @@
 <dd><p>Directory where to write output CSV files.</p>
 </dd></dl>
 
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-compare_curves.py-plot">
-<span id="cmdoption-compare-curves-py-plot"></span><span id="cmdoption-compare_curves.py-no-plot"></span><span id="cmdoption-compare-curves-py-no-plot"></span><span class="sig-name descname"><span class="pre">--plot</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-plot</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-compare_curves.py-plot" title="Permalink to this definition">#</a></dt>
-<dd><p>Plot each IV curve fit.</p>
-</dd></dl>
-
 </section>
 <table class="autosummary longtable table autosummary">
 <tbody>
@@ -533,16 +538,13 @@
 <tr class="row-even"><td><p><a class="reference internal" href="generated/ivcurves.compare_curves.get_curve.html#ivcurves.compare_curves.get_curve" title="ivcurves.compare_curves.get_curve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_curve</span></code></a>(curve_parameters, vth, num_pts, atol)</p></td>
 <td><p>Gets precise voltage and current pairs for the given curve.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/ivcurves.compare_curves.iv_plotter.html#ivcurves.compare_curves.iv_plotter" title="ivcurves.compare_curves.iv_plotter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iv_plotter</span></code></a>(iv_known, iv_fitted, vth, ...[, ...])</p></td>
-<td><p>Plots the fitted curve (green) and the known curve (cyan).</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/ivcurves.compare_curves.get_test_sets_to_score.html#ivcurves.compare_curves.get_test_sets_to_score" title="ivcurves.compare_curves.get_test_sets_to_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_test_sets_to_score</span></code></a>(fitted_files_directory)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/ivcurves.compare_curves.get_test_sets_to_score.html#ivcurves.compare_curves.get_test_sets_to_score" title="ivcurves.compare_curves.get_test_sets_to_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_test_sets_to_score</span></code></a>(fitted_files_directory)</p></td>
 <td><p>Returns a list of valid test set filenames (excluding file extensions) based on the files found in <code class="docutils literal notranslate"><span class="pre">fitted_files_directory</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/ivcurves.compare_curves.write_test_set_score_per_curve_csvs.html#ivcurves.compare_curves.write_test_set_score_per_curve_csvs" title="ivcurves.compare_curves.write_test_set_score_per_curve_csvs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_test_set_score_per_curve_csvs</span></code></a>(scores, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/ivcurves.compare_curves.write_test_set_score_per_curve_csvs.html#ivcurves.compare_curves.write_test_set_score_per_curve_csvs" title="ivcurves.compare_curves.write_test_set_score_per_curve_csvs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_test_set_score_per_curve_csvs</span></code></a>(scores, ...)</p></td>
 <td><p>Writes a CSV file containing a score for each test case in every test set.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/ivcurves.compare_curves.write_overall_scores_csv.html#ivcurves.compare_curves.write_overall_scores_csv" title="ivcurves.compare_curves.write_overall_scores_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_overall_scores_csv</span></code></a>(scores, csv_output_path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/ivcurves.compare_curves.write_overall_scores_csv.html#ivcurves.compare_curves.write_overall_scores_csv" title="ivcurves.compare_curves.write_overall_scores_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_overall_scores_csv</span></code></a>(scores, csv_output_path)</p></td>
 <td><p>Writes a CSV file containing overall scores for each test set.</p></td>
 </tr>
 </tbody>

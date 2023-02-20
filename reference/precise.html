@@ -186,11 +186,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="generated/ivcurves.compare_curves.iv_plotter.html">
-     ivcurves.compare_curves.iv_plotter
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="generated/ivcurves.compare_curves.get_test_sets_to_score.html">
      ivcurves.compare_curves.get_test_sets_to_score
     </a>
@@ -245,11 +240,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="generated/ivcurves.precise.get_precise_i.html">
      ivcurves.precise.get_precise_i
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="generated/ivcurves.precise.plot_iv_curves.html">
-     ivcurves.precise.plot_iv_curves
     </a>
    </li>
    <li class="toctree-l2">
@@ -317,11 +307,33 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="github_workflows/index.html">
-   GitHub Workflows
+  <a class="reference internal" href="plots.html">
+   Plots
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/ivcurves.plots.plot_precise_iv_curves.html">
+     ivcurves.plots.plot_precise_iv_curves
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/ivcurves.plots.scoring_visualization.html">
+     ivcurves.plots.scoring_visualization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="github_workflows/index.html">
+   GitHub Workflows
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -355,8 +367,8 @@
     <a class="reference internal" href="github_workflows/utils/index.html">
      Utility Python Scripts
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-    <label for="toctree-checkbox-5">
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -365,8 +377,8 @@
       <a class="reference internal" href="github_workflows/utils/print_json_as_env.html">
        Print JSON as ENV
       </a>
-      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-      <label for="toctree-checkbox-6">
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
        <i class="fas fa-chevron-down">
        </i>
       </label>
@@ -402,8 +414,8 @@
       <a class="reference internal" href="github_workflows/utils/record_scores.html">
        Record Scores
       </a>
-      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-      <label for="toctree-checkbox-7">
+      <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+      <label for="toctree-checkbox-8">
        <i class="fas fa-chevron-down">
        </i>
       </label>
@@ -482,11 +494,15 @@
 <section id="precise-py">
 <h2>precise.py<a class="headerlink" href="#precise-py" title="Permalink to this heading">#</a></h2>
 <p>Generates precise IV curve data from the parameters of the single diode equation.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">usage: precise.py [-h] [--test-set TEST_SET_FILENAME]</span>
-<span class="go">                  [--save-json SAVE_JSON_PATH]</span>
-<span class="go">                  [--save-images SAVE_IMAGES_PATH] [--plot] [--no-plot]</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">usage: precise.py [-h] [--test-set TEST_SET_FILENAME] save_json_path</span>
 </pre></div>
 </div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-precise.py-arg-save_json_path">
+<span id="cmdoption-precise-py-arg-save-json-path"></span><span class="sig-name descname"><span class="pre">save_json_path</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-precise.py-arg-save_json_path" title="Permalink to this definition">#</a></dt>
+<dd><p>Saves the test set JSON at the given path.</p>
+</dd></dl>
+
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-precise.py-h">
 <span id="cmdoption-precise-py-h"></span><span id="cmdoption-precise.py-help"></span><span id="cmdoption-precise-py-help"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-precise.py-h" title="Permalink to this definition">#</a></dt>
@@ -497,30 +513,6 @@
 <dt class="sig sig-object std" id="cmdoption-precise.py-test-set">
 <span id="cmdoption-precise-py-test-set"></span><span class="sig-name descname"><span class="pre">--test-set</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;test_set_filename&gt;</span></span><a class="headerlink" href="#cmdoption-precise.py-test-set" title="Permalink to this definition">#</a></dt>
 <dd><p>Test set filename (excluding file extension) to generate curves for. If omitted, all test sets are used.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-precise.py-save-json">
-<span id="cmdoption-precise-py-save-json"></span><span class="sig-name descname"><span class="pre">--save-json</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;save_json_path&gt;</span></span><a class="headerlink" href="#cmdoption-precise.py-save-json" title="Permalink to this definition">#</a></dt>
-<dd><p>Saves the test set JSON at the given path.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-precise.py-save-images">
-<span id="cmdoption-precise-py-save-images"></span><span class="sig-name descname"><span class="pre">--save-images</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;save_images_path&gt;</span></span><a class="headerlink" href="#cmdoption-precise.py-save-images" title="Permalink to this definition">#</a></dt>
-<dd><p>Saves the test set IV curve plots at the given path.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-precise.py-plot">
-<span id="cmdoption-precise-py-plot"></span><span class="sig-name descname"><span class="pre">--plot</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-precise.py-plot" title="Permalink to this definition">#</a></dt>
-<dd><p>Plot each test set’s IV curves</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-precise.py-no-plot">
-<span id="cmdoption-precise-py-no-plot"></span><span class="sig-name descname"><span class="pre">--no-plot</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-precise.py-no-plot" title="Permalink to this definition">#</a></dt>
-<dd><p>Do not create plots (optional)</p>
 </dd></dl>
 
 </section>
@@ -544,10 +536,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="generated/ivcurves.precise.get_precise_i.html#ivcurves.precise.get_precise_i" title="ivcurves.precise.get_precise_i"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_precise_i</span></code></a>(il, io, rs, rsh, n, vth, ns, ...)</p></td>
 <td><p>Calculates precise solutions to the single diode equation for the given parameters, with an error of at most <code class="docutils literal notranslate"><span class="pre">atol</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/ivcurves.precise.plot_iv_curves.html#ivcurves.precise.plot_iv_curves" title="ivcurves.precise.plot_iv_curves"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_iv_curves</span></code></a>(test_set_filename, ...[, ...])</p></td>
-<td><p>Plot IV curves.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/ivcurves.precise.build_precise_json.html#ivcurves.precise.build_precise_json" title="ivcurves.precise.build_precise_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_precise_json</span></code></a>(case_parameter_sets, vth, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/ivcurves.precise.build_precise_json.html#ivcurves.precise.build_precise_json" title="ivcurves.precise.build_precise_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_precise_json</span></code></a>(case_parameter_sets, vth, ...)</p></td>
 <td><p>Builds a dict of precise IV curve solutions compliant with the IV Curve JSON schema.</p></td>
 </tr>
 </tbody>
