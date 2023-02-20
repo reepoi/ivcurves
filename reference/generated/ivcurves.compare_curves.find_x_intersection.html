@@ -35,7 +35,6 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
@@ -250,6 +249,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="ivcurves.precise.plot_iv_curves.html">
      ivcurves.precise.plot_iv_curves
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ivcurves.precise.build_precise_json.html">
+     ivcurves.precise.build_precise_json
     </a>
    </li>
   </ul>
@@ -468,7 +472,7 @@
 <dt class="sig sig-object py" id="ivcurves.compare_curves.find_x_intersection">
 <span class="sig-prename descclassname"><span class="pre">ivcurves.compare_curves.</span></span><span class="sig-name descname"><span class="pre">find_x_intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxsteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivcurves.compare_curves.find_x_intersection" title="Permalink to this definition">#</a></dt>
 <dd><p>Finds x-coordinate of the intersection between the known IV curve and the
-line segment from the origin to the given point <span class="math notranslate nohighlight">\((x_p, y_p)\)</span>.</p>
+line segment from the origin to the given point.</p>
 <p>This is an auxiliary function for <a class="reference internal" href="ivcurves.compare_curves.total_score.html#ivcurves.compare_curves.total_score" title="ivcurves.compare_curves.total_score"><code class="xref py py-func docutils literal notranslate"><span class="pre">total_score()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
