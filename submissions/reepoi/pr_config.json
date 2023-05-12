@@ -1,6 +1,6 @@
 {
     "RUN_SCORER": true,
-    "REQUIREMENTS": "",
-    "SUBMISSION_MAIN": "",
-    "TEST_SETS_FOR_SCORING": ""
+    "REQUIREMENTS": "./requirements.txt",
+    "SUBMISSION_MAIN": "./sandia_simple.py",
+	"TEST_SETS_FOR_SCORING": "case1,case2,case3a,case3b,case3c,case3d"
 }
