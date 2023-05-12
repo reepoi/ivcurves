@@ -1,5 +1,5 @@
 {
-    "RUN_SCORER": false,
+    "RUN_SCORER": true,
     "REQUIREMENTS": "",
     "SUBMISSION_MAIN": "",
     "TEST_SETS_FOR_SCORING": ""
