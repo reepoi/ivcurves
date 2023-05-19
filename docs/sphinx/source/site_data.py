@@ -1,13 +1,12 @@
 import datetime
-import json
 from pathlib import Path
+import pandas as pd
 import ivcurves.utils as utils
 from ivcurves.utils import mp  # same instance of mpmath's mp imported in ivcurves/utils
 
 
 def load_scores_database():
-    with open('scores_database.json', 'r') as file:
-        return json.load(file)
+    return utils.load_json('scores_database.json')
 
 
 def submissions():
@@ -84,6 +83,10 @@ def scoreboard_table_rows():
         table_rows.append(list(entry.values()))
 
     return table_rows
+
+
+def submission_table_parsed_representation(overall_scores):
+    pass
 
 
 RENAME = {'case1': 'Case 1',
